@@ -47,7 +47,6 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -112,4 +111,54 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.carte {
+    width: 527px;
+    height: 339px;
+    background-image: url('../img/carte.png');
+    background-repeat: no-repeat;
+    color: white;
+    padding-top: 20px;
+}
+
+.carte_top {
+    font-size: 22px;
+    background: rgba(255,255,255,.5);
+    padding: 5px;
+}
+
+.carte_left, .carte_right {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.carte_left {
+    list-style-image: url('../img/carrejaune.png');
+    width: 60%;
+    text-align: left;
+}
+
+.carte_name_name, .carte_pokedex_name {
+    float: right;
+}
+.carte_left li {
+    background: rgba(255,255,255,.5);
+    padding: 5px;
+    margin-top: 10px;
+    width: 60%;
+}
+
+.carte_left li div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.carte_bottom {
+    background: rgba(255,255,255,.5);
+    padding: 5px;
+    margin: 0 auto;
+    width: 90%;
 }

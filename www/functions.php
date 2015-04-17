@@ -26,7 +26,7 @@
 			}
 
 			if(isset($users[0])){
-				echo 'OK';
+				echo json_encode($users[0], true);
 			} else {
 				echo 'KO';
 			}

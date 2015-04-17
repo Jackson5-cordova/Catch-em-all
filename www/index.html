@@ -88,10 +88,42 @@
             </form>
 
             <div class="connected">
-                Vous êtes bien connecté maggle
+                <p>
+                    Vous êtes bien connecté
+                </p>
+
+                <div class="carte">
+
+                    <div class="carte_top">Carte de dresseur</div>
+
+                    <ul class="carte_left">
+
+                        <li class="carte_name">
+                            <div class="carte_name_title">Name</div>
+                            <div class="carte_name_name"></div> 
+                        </li>
+
+                        <li class="carte_pokedex">
+                            <div class="carte_pokedex_title">Pokédex</div>
+                            <div class="carte_pokedex_name"></div> 
+                        </li>
+
+                    </ul>
+
+                    <div class="carte_right">
+                        <img src="" width="126" alt="">
+                    </div>
+
+                    <div class="carte_bottom">
+                        <p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+                    </div>
+                    
+                </div>
+
             </div>
         
         </div>
+        
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -106,11 +138,19 @@
 
                 var connected = false;
 
-                var phone_number = '0633086880';
+                var phone_number = '0633086883';
 
                 $.post('functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
 
-                    if(data == 'OK') {
+                    var data = JSON.parse(data);
+
+                    console.log(data);
+                    console.log(data.name);
+
+                    if(data.name) {
+                        $('.carte_name_name').text(data.name);
+                        $('.carte_pokedex_name').text(data.pokedex);
+                        $('.carte_right img').attr('src', data.picture);
                         $('.connected').show();
                     } else {
                         $('.sign_log_in').show();
