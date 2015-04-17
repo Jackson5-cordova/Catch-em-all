@@ -11,6 +11,10 @@
                         {
                             "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -29,6 +33,10 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -37,6 +45,9 @@
     },
     "installed_plugins": {
         "org.apache.cordova.contacts": {
+            "PACKAGE_NAME": "com.jackson5.catch_them_all"
+        },
+        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },
