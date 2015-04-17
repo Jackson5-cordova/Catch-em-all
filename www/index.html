@@ -11,8 +11,101 @@
     </head>
     <body>
         <div class="app">
-            <img src="" id="img" />
+            <div class="sign_log_in">
+                 <p>
+                    Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+                </p>
+
+                <button class="show_sign_in">Sign in</button>
+                <button class="show_log_in">Log in</button>
+            </div>
+
+            <form class="signIn" action="" method="post">
+               
+                <div class="style_input">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" />
+                </div>
+
+                <div class="style_input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" />
+                </div>
+
+                <div class="style_input">
+                    <label for="phone_number">Phone number</label>
+                    <input type="text" name="phone_number" />
+                </div>
+
+                <div class="style_input">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" />
+                </div>
+
+                <div class="style_input">
+                    <input type="submit" value="Submit" />
+                </div>
+
+
+            </form>
+
+            <form class="logIn" action="" method="post">
+               
+                <div class="style_input">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" />
+                </div>
+
+                <div class="style_input">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" />
+                </div>
+
+                <div class="style_input">
+                    <input type="submit" value="Submit" />
+                </div>
+
+
+            </form>
+
+            <div class="connected">
+                <p>
+                    Vous êtes bien connecté
+                </p>
+
+                <div class="carte">
+
+                    <div class="carte_top">Carte de dresseur</div>
+
+                    <ul class="carte_left">
+
+                        <li class="carte_name">
+                            <div class="carte_name_title">Name</div>
+                            <div class="carte_name_name"></div> 
+                        </li>
+
+                        <li class="carte_pokedex">
+                            <div class="carte_pokedex_title">Pokédex</div>
+                            <div class="carte_pokedex_name"></div> 
+                        </li>
+
+                    </ul>
+
+                    <div class="carte_right">
+                        <img src="" width="126" alt="">
+                    </div>
+
+                    <div class="carte_bottom">
+                        <p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        
         </div>
+        
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
@@ -20,7 +113,87 @@
 
         <script>
             $(document).ready(function() {
-                
+
+                $('.signIn, .logIn, .sign_log_in').hide();
+                $('.connected').hide();
+
+                var connected = false;
+
+                var phone_number = '0633086883';
+
+                $.post('functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+
+                    var data = JSON.parse(data);
+
+                    console.log(data);
+                    console.log(data.name);
+
+                    if(data.name) {
+                        $('.carte_name_name').text(data.name);
+                        $('.carte_pokedex_name').text(data.pokedex);
+                        $('.carte_right img').attr('src', data.picture);
+                        $('.connected').show();
+                    } else {
+                        $('.sign_log_in').show();
+                    }
+                });
+
+                $('.sign_log_in button').on('click', function() {
+
+                    var wut = $(this).attr('class');
+
+                    $('.sign_log_in').hide();
+
+                    if(wut == 'show_log_in') {
+                        $('.logIn').show();
+
+                    } else if(wut == 'show_sign_in') {
+                        $('.signIn').show();
+                    }
+
+                });
+
+                $('.signIn').on('submit', function(e) {
+                    e.preventDefault();
+
+                    var data = {};
+                    data['sign_name'] = $(this).find('input[name=name]').val();
+                    data['sign_email'] = $(this).find('input[name=email]').val();
+                    data['sign_phone_number'] = $(this).find('input[name=phone_number]').val();
+                    data['sign_password'] = $(this).find('input[name=password]').val();
+
+                    $.post('functions.php',{data:data, what_function:'sign_in'},function(data) {
+
+                        if(data == 'OK') {
+                            $('.connected').show();
+                            $('.signIn').hide();
+                        } else {
+                            console.log('error');
+                        }
+                    });
+
+                });
+
+                $('.logIn').on('submit', function(e) {
+                    e.preventDefault();
+
+                    var data = {};
+                    data['log_name'] = $(this).find('input[name=name]').val();
+                    data['log_password'] = $(this).find('input[name=password]').val();
+
+                    $.post('functions.php',{data:data, what_function:'log_in'},function(data) {
+
+                        if(data != 'KO') {
+                            $('.connected').append('Bienvenue '+data);
+                            $('.connected').show();
+                            $('.logIn').hide();
+                        } else {
+                            alert('tu n existe pas');
+                        }
+                    });
+
+                });
+
             });
         </script> 
     </body>
