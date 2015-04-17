@@ -120,7 +120,9 @@
 
                 var phone_number = '0633086883';
 
-                $.post('functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+                var url_access = "http://rabillon.fr/";
+
+                $.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
 
                     if(data != 'KO') {
                         
@@ -159,7 +161,7 @@
                     data['sign_phone_number'] = $(this).find('input[name=phone_number]').val();
                     data['sign_password'] = $(this).find('input[name=password]').val();
 
-                    $.post('functions.php',{data:data, what_function:'sign_in'},function(data) {
+                    $.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
 
                         if(data == 'OK') {
                             $('.connected').show();
@@ -178,7 +180,7 @@
                     data['log_name'] = $(this).find('input[name=name]').val();
                     data['log_password'] = $(this).find('input[name=password]').val();
 
-                    $.post('functions.php',{data:data, what_function:'log_in'},function(data) {
+                    $.post(url_access+'functions.php',{data:data, what_function:'log_in'},function(data) {
 
                         if(data != 'KO') {
                             $('.connected').append('Bienvenue '+data);
