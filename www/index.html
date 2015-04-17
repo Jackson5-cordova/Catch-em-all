@@ -122,16 +122,14 @@
 
                 $.post('functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
 
-                    var data = JSON.parse(data);
-
-                    console.log(data);
-                    console.log(data.name);
-
-                    if(data.name) {
+                    if(data != 'KO') {
+                        
+                        var data = JSON.parse(data);
                         $('.carte_name_name').text(data.name);
                         $('.carte_pokedex_name').text(data.pokedex);
                         $('.carte_right img').attr('src', data.picture);
                         $('.connected').show();
+
                     } else {
                         $('.sign_log_in').show();
                     }
