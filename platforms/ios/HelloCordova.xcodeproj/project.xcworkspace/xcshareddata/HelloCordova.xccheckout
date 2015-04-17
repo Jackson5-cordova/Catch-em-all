@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6009F4D0-1C2E-4173-A6E2-4FC192791455</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HelloCordova</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</key>
+		<string>https://github.com/Jackson5-cordova/Catch-em-all.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platforms/ios/HelloCordova.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Jackson5-cordova/Catch-em-all.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Catch_Them_All</string>
+		</dict>
+	</array>
+</dict>
+</plist>
