@@ -82,6 +82,13 @@
 
 		break;
 
+		case 'save_picture':
+
+			$_POST['picture'];
+			$_POST['name'];
+
+		break;
+
 	}
 
 ?>
