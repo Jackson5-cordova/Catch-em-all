@@ -118,7 +118,7 @@
 
                 var connected = false;
 
-                var phone_number = '0633086883';
+                var phone_number = '0633086880';
 
                 var url_access = "http://rabillon.fr/";
 
@@ -163,12 +163,18 @@
 
                     $.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
 
-                        if(data == 'OK') {
-                            $('.connected').show();
-                            $('.signIn').hide();
-                        } else {
-                            console.log('error');
-                        }
+                        if(data != 'KO') {
+                        
+                        var data = JSON.parse(data);
+                        $('.carte_name_name').text(data.name);
+                        $('.carte_pokedex_name').text(data.pokedex);
+                        $('.carte_right img').attr('src', data.picture);
+                        $('.connected').show();
+                        $('.signIn').hide();
+
+                    } else {
+                        $('.sign_log_in').show();
+                    }
                     });
 
                 });
@@ -183,11 +189,16 @@
                     $.post(url_access+'functions.php',{data:data, what_function:'log_in'},function(data) {
 
                         if(data != 'KO') {
-                            $('.connected').append('Bienvenue '+data);
-                            $('.connected').show();
+                            
                             $('.logIn').hide();
+                            var data = JSON.parse(data);
+                            $('.carte_name_name').text(data.name);
+                            $('.carte_pokedex_name').text(data.pokedex);
+                            $('.carte_right img').attr('src', data.picture);
+                            $('.connected').show();
+
                         } else {
-                            alert('tu n existe pas');
+                            $('.sign_log_in').show();
                         }
                     });
 
