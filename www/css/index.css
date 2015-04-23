@@ -1,8 +1,36 @@
+/* Fonts
+-------------------- */
+@font-face {
+	font-family: 'Game';
+	src: url('../fonts/game_font_7.eot');
+	src: url('../fonts/game_font_7.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/game_font_7.woff2') format('woff2'),
+		 url('../fonts/game_font_7.woff') format('woff'),
+		 url('../fonts/game_font_7.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gidole';
+	src: url('../fonts/gidole-regular.eot');
+	src: url('../fonts/gidole-regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/gidole-regular.woff2') format('woff2'),
+		 url('../fonts/gidole-regular.woff') format('woff'),
+		 url('../fonts/gidole-regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* General
+-------------------- */
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 body {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:14px;
 	-webkit-touch-callout: none;
 	-webkit-text-size-adjust: none;
 	-webkit-user-select: none;
@@ -25,8 +53,24 @@ body {
     margin: 0 auto;
 }
 
+/* Portrait
+-------------------- */
+.app {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	padding:20px;
+}
+
 .text-center {
 	text-align:center;
+}
+
+form {
+	max-width: 500px;
+	margin: 0 auto;
 }
 
 .carte_top {
@@ -71,7 +115,8 @@ body {
 }
 
 
-/* Landscape layout (with min-width) */
+/* Landscape
+-------------------- */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 	.app {
 		

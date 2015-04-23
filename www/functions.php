@@ -38,21 +38,38 @@
 			$data = $_POST['data'];
 
 			$query = $connect->query("
-				INSERT INTO users (name, email,phone_number,password) VALUES
+				INSERT INTO users (name, email,phone_number,password, picture) VALUES
 				(
 					'{$data['sign_name']}',
 					'{$data['sign_email']}',
 					'{$data['sign_phone_number']}',
-					'{$data['sign_password']}'
+					'{$data['sign_password']}',
+					'{$data['sign_picture']}'
 				)
 				");
 
 			if(!$query) {
-				// print_r($connect->errorInfo());
-				// die;
 				echo 'KO';
 			} else {
-				echo 'OK';
+
+				$query = $connect->query("
+					SELECT *
+					FROM users
+					WHERE users.name = '{$data['sign_name']}'
+					AND users.password = '{$data['sign_password']}'
+				");
+
+				$users = array();
+
+				while($rows = $query->fetch()) {
+					$users[] = $rows;
+				}
+
+				if(isset($users[0])){
+					echo json_encode($users[0], true);
+				} else {
+					echo 'KO';
+				}
 			}
 
 		break;
