@@ -92,7 +92,7 @@
 			}
 
 			if(isset($users[0])){
-				echo $users[0]['name'];
+				echo json_encode($users[0], true);
 			} else {
 				echo 'KO';
 			}

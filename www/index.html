@@ -10,9 +10,27 @@
         <link rel="stylesheet" type="text/css" href="css/foundation.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 
-		<title>Hello World</title>
+        <script src="prefixfree.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+		<title>Catch'em All</title>
 	</head>
 	<body>
+        <nav> <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
+          <ul class="menu">
+            <li><a class="homer" href="#"><i class="fa fa-home"></i> HOME</a></li>
+            <li><a  href="#"><i class="fa fa-tags"></i> CATEGORIES</a>
+            </li>
+            <li><a  href="#"><i class="fa fa-camera"></i> PHOTOS</a>
+            </li>
+            <li><a  href="#"><i class="fa fa-user"></i> CONTACTS</a></li>
+            <li><a  href="#"><i class="fa fa-bullhorn"></i> NEWS</a></li>
+            <li><a  href="#"><i class="fa fa-envelope"></i> CONTACT</a></li>
+            <li><a  href="#"><i class="fa fa-sitemap"></i> GEOLOCALISATION</a></li>
+          </ul>
+        </nav>
+
 		<div class="app vertical-center text-center">
 
         <h1>Welcome on Catch'em All !</h1>
@@ -104,5 +122,25 @@
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+
+<script>
+$(document).ready(function(){ 
+    var touch   = $('#resp-menu');
+    var menu    = $('.menu');
+ 
+    $(touch).on('click', function(e) {
+        e.preventDefault();
+        menu.slideToggle();
+    });
+    
+    $(window).resize(function(){
+        var w = $(window).width();
+        if(w > 767 && menu.is(':hidden')) {
+            menu.removeAttr('style');
+        }
+    });
+    
+});
+</script>
 	</body>
 </html>

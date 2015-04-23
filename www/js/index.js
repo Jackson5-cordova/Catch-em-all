@@ -53,6 +53,7 @@ function init(){ // Tout ce qui est lancé au chargement de la page
 		resize();
 	});
 }
+
 function resize(){ // Tout ce qui est lancé au resize de la page (changement d'orientation)
 	vertical_center();
 }
@@ -179,6 +180,21 @@ function signin_login(){
 	var launchPicture = function() {
 		alert('ok');
 	};
+
+	$('.menu .link_json').on('click', function() {
+
+		$('.news').show();
+
+		$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+
+			if(data != 'KO') {
+				var data = JSON.parse(data);
+				$('.news').append(data);
+			} else {
+				$('.sign_log_in').show();
+			}
+		});
+	});
 
 }
 
