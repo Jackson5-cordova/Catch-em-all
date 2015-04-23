@@ -187,6 +187,11 @@ function signin_login(){
 		alert('ok');
 	};
 
+	$('.menu li').on('click', function() {
+
+		$(this).parent().hide();
+	});
+
 	$('.link_news').on('click', function() {
 
 		$('.div_main').hide();

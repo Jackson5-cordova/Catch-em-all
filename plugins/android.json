@@ -15,6 +15,10 @@
                         {
                             "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -48,6 +52,9 @@
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.jackson5.catch_them_all"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },

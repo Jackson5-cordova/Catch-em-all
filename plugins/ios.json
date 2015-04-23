@@ -22,7 +22,7 @@
                     "CoreGraphics.framework": [
                         {
                             "xml": false,
-                            "count": 3
+                            "count": 4
                         }
                     ],
                     "ImageIO.framework": [
@@ -65,6 +65,10 @@
                         {
                             "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -86,6 +90,9 @@
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.jackson5.catch_them_all"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },
