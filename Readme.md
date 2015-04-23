@@ -26,3 +26,6 @@ Ecrans de l'application
 --
 
 * Mettre les photos de la retrospective dans "/project/j1"
+
+
+# Rendu à 16:40
