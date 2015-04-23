@@ -41,6 +41,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -54,7 +62,11 @@
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
+<<<<<<< HEAD
         "cordova-plugin-splashscreen": {
+=======
+        "org.apache.cordova.geolocation": {
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },

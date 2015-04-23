@@ -104,7 +104,11 @@ module.exports.metadata =
 {
     "org.apache.cordova.contacts": "0.2.16",
     "org.apache.cordova.camera": "0.3.6",
+<<<<<<< HEAD
     "cordova-plugin-splashscreen": "2.0.1-dev"
+=======
+    "org.apache.cordova.geolocation": "0.3.12"
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
 }
 // BOTTOM OF METADATA
 });

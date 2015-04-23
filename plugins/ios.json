@@ -34,7 +34,7 @@
                     "CoreLocation.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "AssetsLibrary.framework": [
@@ -67,7 +67,11 @@
                             "count": 1
                         },
                         {
+<<<<<<< HEAD
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+=======
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
                             "count": 1
                         }
                     ]
@@ -78,7 +82,7 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -92,7 +96,11 @@
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
+<<<<<<< HEAD
         "cordova-plugin-splashscreen": {
+=======
+        "org.apache.cordova.geolocation": {
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },

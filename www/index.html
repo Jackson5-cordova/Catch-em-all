@@ -7,12 +7,12 @@
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
-        <link rel="stylesheet" type="text/css" href="css/foundation.css" />
+		<link rel="stylesheet" type="text/css" href="css/foundation.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 
-        <script src="prefixfree.min.js"></script>
+		<script src="prefixfree.min.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 		<title>Catch'em All</title>
 	</head>
@@ -24,7 +24,7 @@
             <li><a href="#">PHOTOS</a></li>
             <li><a href="#" class="link_contact">CONTACTS</a></li>
             <li><a href="#" class="link_news">NEWS</a></li>
-            <li><a href="#">GEOLOCALISATION</a></li>
+            <li><a href="#" class="link_geoloc">GEOLOCALISATION</a></li>
           </ul>
         </nav>
 
@@ -46,7 +46,9 @@
             <div class="div_news div_main">
                 <h2>News</h2>
             </div>
-
+            <div class="div_geoloc div_main">
+                <h2>Geolocalisation</h2>
+            </div>
             <div class="div_home div_main">
 
                 <h2>Home</h2>
@@ -97,19 +99,22 @@
                     </div>
                 </form>
 
-                <div class="take_picture">
-                    <p>
-                        Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
-                        <br /><br />
-                        Cliquez sur le bouton ci-dessous pour prendre une photo !
-                    </p>
+				<div class="take_picture vertical-center">
+					<p>
+						Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
+						<br /><br />
+						Cliquez sur le bouton ci-dessous pour prendre une photo !
+					</p>
 
-                    <button class="button_picture">Prendre une photo</button>
-                    
-                    <br /><br /><br /><br />
-                    <button class="pass_step">Passer cette étape</button>
+					<button onclick="capturePhoto();">Capture Photo</button><br>
+					<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+					<img id="image_taken" src="" style="display:none;width:100%;">
+					
+					<br /><br /><br /><br />
+					
+					<button id="image-submit" style="display:none" onclick="savePhoto();">Sauvegarder</button><button class="pass_step">Passer cette étape</button>
 
-                </div>
+				</div>
 
                 <div class="connected">
                     <p>Vous êtes bien connecté</p>
@@ -143,21 +148,21 @@
 
 <script>
 $(document).ready(function(){ 
-    var touch   = $('#resp-menu');
-    var menu    = $('.menu');
+	var touch   = $('#resp-menu');
+	var menu    = $('.menu');
  
-    $(touch).on('click', function(e) {
-        e.preventDefault();
-        menu.slideToggle();
-    });
-    
-    $(window).resize(function(){
-        var w = $(window).width();
-        if(w > 767 && menu.is(':hidden')) {
-            menu.removeAttr('style');
-        }
-    });
-    
+	$(touch).on('click', function(e) {
+		e.preventDefault();
+		menu.slideToggle();
+	});
+	
+	$(window).resize(function(){
+		var w = $(window).width();
+		if(w > 767 && menu.is(':hidden')) {
+			menu.removeAttr('style');
+		}
+	});
+	
 });
 </script>
 	</body>
