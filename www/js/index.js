@@ -47,6 +47,7 @@ app.initialize();
 // Functions
 function init(){
 	signin_login();
+	vertical_center();
 }
 
 function signin_login(){
@@ -112,5 +113,14 @@ function signin_login(){
 				$('.sign_log_in').show();
 			}
 		});
+	});
+}
+
+function vertical_center(){
+	$('.vertical-center').each(function(){
+		var elH 	= $(this).height(),
+			parentH	= $(this).parent().height(),
+			calc	= (parentH / 2) - (elH / 2);
+		$(this).css('margin-top',calc);
 	});
 }
