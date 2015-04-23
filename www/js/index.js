@@ -48,7 +48,6 @@ app.initialize();
 function init(){ // Tout ce qui est lancé au chargement de la page
 	signin_login();
 	vertical_center();
-	contacts();
 	resize();
 	$(window).resize(function(){
 		resize();
@@ -62,10 +61,16 @@ function resize(){ // Tout ce qui est lancé au resize de la page (changement d'
 // Fonctions
 function signin_login(){
 
+	var contacts_done = 0;
+	var news_done = 0;
+
 	$('.signIn, .logIn, .sign_log_in').hide();
 	$('.connected').hide();
 	$('.return').hide();
 	$('.take_picture').hide();
+
+	$('.div_main').hide();
+	$('.div_home').show();
 
 	var connected = false,
 		phone_number = '0633086880',
@@ -182,23 +187,84 @@ function signin_login(){
 		alert('ok');
 	};
 
-	$('.menu .link_json').on('click', function() {
+	$('.link_news').on('click', function() {
 
-		$('.news').show();
+		$('.div_main').hide();
+		$('.div_news').show();
 
-		$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+		if(news_done === 0) {
 
-			if(data != 'KO') {
-				var data = JSON.parse(data);
-				$('.news').append(data);
-			} else {
-				$('.sign_log_in').show();
-			}
-		});
+			$('.div_news').append('<div class="loading">Waiting...</div>');
+
+			setTimeout(function() {
+
+				$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+
+					if(data != 'KO') {
+
+						$('.loading').remove();
+
+						var data = JSON.parse(data);
+						for (the_data in data) {
+							$('.div_news').append('<p>'+data[the_data]+'</p>');
+						}
+
+						news_done = 1;
+
+					} else {
+						$('.sign_log_in').show();
+					}
+				});
+
+			}, 2000);
+		}
+		
+	});
+
+	$('.link_contact').on('click', function() {
+
+		$('.div_main').hide();
+		$('.div_contact').show();
+
+		if(contacts_done === 0) {
+
+			$('.div_contact').append('<div class="loading">Waiting...</div>');
+
+			setTimeout(function() {
+
+				var data;
+
+				data = contacts();
+
+				$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
+
+					if(data != 'KO') {
+
+						$('.loading').remove();
+
+						var data = JSON.parse(data);
+						console.log(data);
+
+						if(data.length != 0) {
+							for (var i = 0; i < data.length; i++) {
+								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+							}
+						} else {
+							$('.div_contact').append('<p>Aucun contact trouvé</p>');
+						}						
+
+						contacts_done = 1;
+
+					} else {
+						$('.sign_log_in').show();
+					}
+				});
+
+			}, 2000);
+		}
 	});
 
 }
-
 
 function vertical_center(){
 	$('.vertical-center').each(function(){
@@ -210,18 +276,25 @@ function vertical_center(){
 }
 
 function contacts(){
-	if(page == "contact"){
-		function onSuccess(contacts) {
-		    alert('Found ' + contacts.length + ' contacts.');
-		};
-		function onError(contactError) {
-		    alert('onError!');
-		};
-		var options      = new ContactFindOptions();
-		options.filter   = "Takushi";
-		options.multiple = true;
-		options.desiredFields = [navigator.contacts.fieldType.id];
-		var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-		navigator.contacts.find(fields, onSuccess, onError, options);
-	}
+
+	function onSuccess(contacts) {
+	    alert('Found ' + contacts.length + ' contacts.');
+	};
+	function onError(contactError) {
+	    alert('onError!');
+	};
+
+	// var options      = new ContactFindOptions();
+	// options.filter   = "Takushi";
+	// options.multiple = true;
+	// options.desiredFields = [navigator.contacts.fieldType.id];
+	// var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+
+	// navigator.contacts.find(fields, onSuccess, onError, options);
+
+	var all_contacts = {};
+	all_contacts[0] = '0633086883';
+	all_contacts[1] = '0102030405';
+
+	return all_contacts;
 }
