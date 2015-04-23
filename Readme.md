@@ -23,5 +23,6 @@ Ecrans de l'application
 * Pitch de l'app
 * Liste des blocages
 
+--
 
 * Mettre les photos de la retrospective dans "/project/j1"
