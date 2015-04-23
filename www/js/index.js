@@ -48,6 +48,7 @@ app.initialize();
 function init(){ // Tout ce qui est lancé au chargement de la page
 	signin_login();
 	vertical_center();
+	contacts();
 	resize();
 	$(window).resize(function(){
 		resize();
@@ -210,6 +211,17 @@ function vertical_center(){
 
 function contacts(){
 	if(page == "contact"){
-		
+		function onSuccess(contacts) {
+		    alert('Found ' + contacts.length + ' contacts.');
+		};
+		function onError(contactError) {
+		    alert('onError!');
+		};
+		var options      = new ContactFindOptions();
+		options.filter   = "Takushi";
+		options.multiple = true;
+		options.desiredFields = [navigator.contacts.fieldType.id];
+		var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+		navigator.contacts.find(fields, onSuccess, onError, options);
 	}
 }
