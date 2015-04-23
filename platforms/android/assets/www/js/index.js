@@ -320,23 +320,33 @@ function onFailPhoto(message) {
 
 function contacts(){
 	function onSuccess(contacts) {
-	    alert('Found ' + contacts.length + ' contacts.');
+
+		alert('Found ' + contacts.length + ' contacts.');
+
+		var all_contacts = {};
+
+	 	//for(j = 0;j < contacts.length; j++){
+		// 	for(i = 0;i < contacts[j].phoneNumbers.length; i++){
+		// 		all_contacts[i] = contacts[j].phoneNumbers[i].value;
+		// 		all_contacts[i] = '0633086883';
+		// 		return all_contacts;
+		// 	}
+		// }
+
+		all_contacts[0] = "0633086883";
+		return all_contacts;
 	};
 	function onError(contactError) {
 	    alert('onError!');
 	};
+	$('.menu').hide();
 
-	// var options      = new ContactFindOptions();
-	// options.filter   = "Takushi";
-	// options.multiple = true;
-	// options.desiredFields = [navigator.contacts.fieldType.id];
-	// var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+	var options      = new ContactFindOptions();
+	options.filter   = "";
+	options.multiple = true;
+	options.desiredFields = [navigator.contacts.fieldType.id];
+	var filter = ["displayName", "name"];
+	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
 
-	// navigator.contacts.find(fields, onSuccess, onError, options);
-
-	var all_contacts = {};
-	all_contacts[0] = '0633086883';
-	all_contacts[1] = '0102030405';
-
-	return all_contacts;
+	navigator.contacts.find(filter, onSuccess, onError, options);
 }
