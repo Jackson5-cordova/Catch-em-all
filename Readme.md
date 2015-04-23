@@ -7,3 +7,11 @@ Ecrans de l'application
     * Il va devoir se prendre en photo pour faire sa carte de dresseur
     * Renseignement de l'email, et choix d'un mot de passe
     * Connexion à l'appli pour jouer
+
+
+# Jour 2
+* Thème UI
+	* Icon, Splashscreen
+* Globalization -> En Français et en Anglais (pouvoir switcher)
+* Accès remote -> Avoir besoins d'acceder à des infos à distance (afficher les infos)
+* Analytics
