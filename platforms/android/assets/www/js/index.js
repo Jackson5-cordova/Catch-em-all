@@ -256,6 +256,33 @@ function signin_login(){
 		}
 	});
 
+	$('.link_geoloc').on('click', function() {
+
+		var onSuccess = function(position) {
+			var coords = "Latitude:" + position.coords.latitude;
+			$('.div_geoloc').append(coords);
+		    // alert('Latitude: '          + position.coords.latitude          + '\n' +
+		    //       'Longitude: '         + position.coords.longitude         + '\n' +
+		    //       'Altitude: '          + position.coords.altitude          + '\n' +
+		    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+		    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+		    //       'Heading: '           + position.coords.heading           + '\n' +
+		    //       'Speed: '             + position.coords.speed             + '\n' +
+		    //       'Timestamp: '         + position.timestamp                + '\n');
+		};
+
+		// onError Callback receives a PositionError object
+		//
+		function onError(error) {
+		    alert('code: '    + error.code    + '\n' +
+		          'message: ' + error.message + '\n');
+		}
+
+		$('.div_main').hide();
+		$('.div_geoloc').show();
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	});
+
 }
 
 function vertical_center(){

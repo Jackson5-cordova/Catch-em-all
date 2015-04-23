@@ -11,18 +11,10 @@
             "id": "org.apache.cordova.camera"
         }
     },
-<<<<<<< HEAD
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/apache/cordova-plugin-splashscreen.git",
-            "subdir": "."
-=======
     "org.apache.cordova.geolocation": {
         "source": {
             "type": "registry",
             "id": "org.apache.cordova.geolocation"
->>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
         }
     }
 }

@@ -174,6 +174,11 @@ function signin_login(){
 	});
 
 
+	$('.menu li').on('click', function() {
+
+		$(this).parent().hide();
+	});
+
 	$('.link_news').on('click', function() {
 
 		$('.div_main').hide();
@@ -228,17 +233,10 @@ function signin_login(){
 					if(data != 'KO') {
 
 						$('.loading').remove();
-<<<<<<< HEAD
 
 						var data = JSON.parse(data);
 						console.log(data);
 
-=======
-
-						var data = JSON.parse(data);
-						console.log(data);
-
->>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
 						if(data.length != 0) {
 							for (var i = 0; i < data.length; i++) {
 								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
@@ -248,16 +246,6 @@ function signin_login(){
 						}						
 
 						contacts_done = 1;
-<<<<<<< HEAD
-
-					} else {
-						$('.sign_log_in').show();
-					}
-				});
-
-			}, 2000);
-		}
-=======
 
 					} else {
 						$('.sign_log_in').show();
@@ -270,10 +258,29 @@ function signin_login(){
 
 	$('.link_geoloc').on('click', function() {
 
+		var onSuccess = function(position) {
+			var coords = "Latitude:" + position.coords.latitude;
+			$('.div_geoloc').append(coords);
+		    // alert('Latitude: '          + position.coords.latitude          + '\n' +
+		    //       'Longitude: '         + position.coords.longitude         + '\n' +
+		    //       'Altitude: '          + position.coords.altitude          + '\n' +
+		    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+		    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+		    //       'Heading: '           + position.coords.heading           + '\n' +
+		    //       'Speed: '             + position.coords.speed             + '\n' +
+		    //       'Timestamp: '         + position.timestamp                + '\n');
+		};
+
+		// onError Callback receives a PositionError object
+		//
+		function onError(error) {
+		    alert('code: '    + error.code    + '\n' +
+		          'message: ' + error.message + '\n');
+		}
+
 		$('.div_main').hide();
 		$('.div_geoloc').show();
-		
->>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	});
 
 }
@@ -373,6 +380,8 @@ function contacts(){
 	options.desiredFields = [navigator.contacts.fieldType.id];
 	var filter = ["displayName", "name"];
 	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+
+
 
 	navigator.contacts.find(filter, onSuccess, onError, options);
 }

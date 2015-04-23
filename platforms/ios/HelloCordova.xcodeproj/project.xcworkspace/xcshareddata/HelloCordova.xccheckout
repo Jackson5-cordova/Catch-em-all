@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6009F4D0-1C2E-4173-A6E2-4FC192791455</string>
+	<string>ACD06BA4-06E5-4B4A-89F8-DD43BF0BB210</string>
 	<key>IDESourceControlProjectName</key>
 	<string>HelloCordova</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</key>
-		<string>https://github.com/Jackson5-cordova/Catch-em-all.git</string>
+		<string>https://github.com/Jackson5-cordova/IESA153A-Catch-em-all.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>platforms/ios/HelloCordova.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Jackson5-cordova/Catch-em-all.git</string>
+	<string>https://github.com/Jackson5-cordova/IESA153A-Catch-em-all.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>97BC17BD4F8572038009C4FD825C8247CC0C7CA8</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Catch_Them_All</string>
+			<string>IESA153A-Catch-em-all</string>
 		</dict>
 	</array>
 </dict>
