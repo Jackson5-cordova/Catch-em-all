@@ -35,7 +35,6 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
-		
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -62,10 +61,7 @@ function resize(){ // Tout ce qui est lancé au resize de la page (changement d'
 // Fonctions
 function signin_login(){
 
-	$('.signIn, .logIn, .sign_log_in').hide();
-	$('.connected').hide();
-	$('.return').hide();
-	$('.take_picture').hide();
+	$('.signIn, .logIn, .sign_log_in,.connected,.return,.take_picture').hide();
 
 	var connected = false,
 		phone_number = '0633086880',
@@ -169,18 +165,10 @@ function signin_login(){
 		});
 	});
 
-	$('.button_picture').on('click', function() {
-		launchPicture();
-	});
-
 	$('.pass_step').on('click', function() {
 		$('.take_picture').hide();
 		$('.connected').show();
 	});
-
-	var launchPicture = function() {
-		alert('ok');
-	};
 
 	$('.menu .link_json').on('click', function() {
 
@@ -210,18 +198,58 @@ function vertical_center(){
 }
 
 function contacts(){
-	if(page == "contact"){
-		function onSuccess(contacts) {
-		    alert('Found ' + contacts.length + ' contacts.');
-		};
-		function onError(contactError) {
-		    alert('onError!');
-		};
-		var options      = new ContactFindOptions();
-		options.filter   = "Takushi";
-		options.multiple = true;
-		options.desiredFields = [navigator.contacts.fieldType.id];
-		var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-		navigator.contacts.find(fields, onSuccess, onError, options);
-	}
+}
+
+
+
+
+
+
+/* Camera
+-------------------- */
+var pictureSource; // picture source
+var destinationType; // sets the format of returned value
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+	pictureSource = navigator.camera.PictureSourceType;
+	destinationType = navigator.camera.DestinationType;
+}
+function onPhotoDataSuccess(imageURI) {
+	//console.log(imageURI);
+	var cameraImage = document.getElementById('image_taken');
+	cameraImage.style.display = 'block';
+	cameraImage.src = imageURI;
+	var buttonSubmit = document.getElementById('image-submit');
+	buttonSubmit.style.display = 'block';
+	alert(imageURI);
+}
+function onPhotoURISuccess(imageURI) {
+	//console.log(imageURI);
+	var galleryImage = document.getElementById('image_taken');
+	galleryImage.style.display = 'block';
+	galleryImage.src = imageURI;
+	var buttonSubmit = document.getElementById('image-submit');
+	buttonSubmit.style.display = 'block';
+	alert(imageURI);
+}
+function capturePhoto() {
+	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality : 100,
+		destinationType : Camera.DestinationType.FILE_URI,
+		sourceType : Camera.PictureSourceType.CAMERA,
+		encodingType: Camera.EncodingType.JPEG,
+		targetWidth: 100,
+		targetHeight: 100
+	});
+}
+function getPhoto(source) {
+	navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+		quality: 100,
+		targetWidth: 600,
+		targetHeight: 600,
+		destinationType: destinationType.FILE_URI,
+		sourceType: source
+	});
+}
+function onFail(message) {
+	alert('Failed because: ' + message);
 }
