@@ -228,10 +228,17 @@ function signin_login(){
 					if(data != 'KO') {
 
 						$('.loading').remove();
+<<<<<<< HEAD
 
 						var data = JSON.parse(data);
 						console.log(data);
 
+=======
+
+						var data = JSON.parse(data);
+						console.log(data);
+
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
 						if(data.length != 0) {
 							for (var i = 0; i < data.length; i++) {
 								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
@@ -241,6 +248,7 @@ function signin_login(){
 						}						
 
 						contacts_done = 1;
+<<<<<<< HEAD
 
 					} else {
 						$('.sign_log_in').show();
@@ -249,6 +257,23 @@ function signin_login(){
 
 			}, 2000);
 		}
+=======
+
+					} else {
+						$('.sign_log_in').show();
+					}
+				});
+
+			}, 2000);
+		}
+	});
+
+	$('.link_geoloc').on('click', function() {
+
+		$('.div_main').hide();
+		$('.div_geoloc').show();
+		
+>>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
 	});
 
 }
@@ -261,6 +286,7 @@ function vertical_center(){
 		$(this).css('margin-top',calc);
 	});
 }
+
 
 
 
