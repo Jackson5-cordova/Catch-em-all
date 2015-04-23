@@ -29,6 +29,8 @@
 }
 
 body {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:14px;
 	-webkit-touch-callout: none;
 	-webkit-text-size-adjust: none;
 	-webkit-user-select: none;
@@ -47,6 +49,7 @@ body {
 	left:0;
 	right:0;
 	bottom:0;
+	padding:20px;
 }
 
 .text-center {
