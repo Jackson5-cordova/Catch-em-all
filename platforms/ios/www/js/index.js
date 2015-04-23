@@ -192,21 +192,33 @@ function signin_login(){
 		$('.div_main').hide();
 		$('.div_news').show();
 
-		$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+		if(news_done === 0) {
 
-			if(data != 'KO' && news_done === 0) {
+			$('.div_news').append('<div class="loading">Waiting...</div>');
 
-				var data = JSON.parse(data);
-				for (the_data in data) {
-					$('.div_news').append('<p>'+data[the_data]+'</p>');
-				}
+			setTimeout(function() {
 
-				news_done = 1;
+				$.post(url_access+'functions.php',{what_function:'news'},function(data) {
 
-			} else {
-				$('.sign_log_in').show();
-			}
-		});
+					if(data != 'KO') {
+
+						$('.loading').remove();
+
+						var data = JSON.parse(data);
+						for (the_data in data) {
+							$('.div_news').append('<p>'+data[the_data]+'</p>');
+						}
+
+						news_done = 1;
+
+					} else {
+						$('.sign_log_in').show();
+					}
+				});
+
+			}, 2000);
+		}
+		
 	});
 
 	$('.link_contact').on('click', function() {
@@ -214,30 +226,43 @@ function signin_login(){
 		$('.div_main').hide();
 		$('.div_contact').show();
 
-		var data;
+		if(contacts_done === 0) {
 
-		data = contacts();
+			$('.div_contact').append('<div class="loading">Waiting...</div>');
 
-		$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
+			setTimeout(function() {
 
-			if(data != 'KO' && contacts_done === 0) {
+				var data;
 
-				var data = JSON.parse(data);
-				console.log(data);
+				data = contacts();
 
-				for (var i = 0; i < data.length; i++) {
-					$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-				}
+				$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
 
-				contacts_done = 1;
+					if(data != 'KO') {
 
-			} else {
-				$('.sign_log_in').show();
-			}
-		});
+						$('.loading').remove();
 
+						var data = JSON.parse(data);
+						console.log(data);
+
+						if(data.length != 0) {
+							for (var i = 0; i < data.length; i++) {
+								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+							}
+						} else {
+							$('.div_contact').append('<p>Aucun contact trouvé</p>');
+						}						
+
+						contacts_done = 1;
+
+					} else {
+						$('.sign_log_in').show();
+					}
+				});
+
+			}, 2000);
+		}
 	});
-
 
 }
 
@@ -269,6 +294,7 @@ function contacts(){
 
 	var all_contacts = {};
 	all_contacts[0] = '0633086883';
+	all_contacts[1] = '0102030405';
 
 	return all_contacts;
 }
