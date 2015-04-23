@@ -96,7 +96,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "org.apache.cordova.contacts": "0.2.16",
-    "org.apache.cordova.camera": "0.3.6"
+    "org.apache.cordova.camera": "0.3.6",
+    "org.apache.cordova.geolocation": "0.3.12"
 }
 // BOTTOM OF METADATA
 });

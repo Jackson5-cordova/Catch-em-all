@@ -251,6 +251,13 @@ function signin_login(){
 		}
 	});
 
+	$('.link_geoloc').on('click', function() {
+
+		$('.div_main').hide();
+		$('.div_geoloc').show();
+		
+	});
+
 }
 
 function vertical_center(){
@@ -261,6 +268,7 @@ function vertical_center(){
 		$(this).css('margin-top',calc);
 	});
 }
+
 
 
 
