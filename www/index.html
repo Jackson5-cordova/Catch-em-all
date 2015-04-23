@@ -6,12 +6,38 @@
 		<meta name="msapplication-tap-highlight" content="no" />
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+        <link rel="stylesheet" type="text/css" href="css/foundation.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<title>Hello World</title>
+
+        <script src="prefixfree.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+		<title>Catch'em All</title>
 	</head>
 	<body>
-		<div class="app">
-			<div class="sign_log_in text-center vertical-center">
+        <nav> <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
+          <ul class="menu">
+            <li><a class="homer" href="#"><i class="fa fa-home"></i> HOME</a></li>
+            <li><a  href="#"><i class="fa fa-tags"></i> CATEGORIES</a>
+            </li>
+            <li><a  href="#"><i class="fa fa-camera"></i> PHOTOS</a>
+            </li>
+            <li><a  href="#"><i class="fa fa-user"></i> CONTACTS</a></li>
+            <li><a  href="#"><i class="fa fa-bullhorn"></i> NEWS</a></li>
+            <li><a  href="#"><i class="fa fa-envelope"></i> CONTACT</a></li>
+            <li><a  href="#"><i class="fa fa-sitemap"></i> GEOLOCALISATION</a></li>
+          </ul>
+        </nav>
+
+		<div class="app vertical-center text-center">
+
+        <h1>Welcome on Catch'em All !</h1>
+
+            <a href="#" class="return">Return</a>
+
+			<div class="sign_log_in vertical-center text-center">
 				 <p>
 					Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
 				</p>
@@ -37,7 +63,7 @@
 					<input type="text" name="password" />
 				</div>
 				<div class="style_input">
-					<input type="submit" value="Submit" />
+					<button type="submit">Submit</button>
 				</div>
 			</form>
 
@@ -51,9 +77,23 @@
 					<input type="text" name="password" />
 				</div>
 				<div class="style_input">
-					<input type="submit" value="Submit" />
+					<button type="submit">Submit</button>
 				</div>
 			</form>
+
+            <div class="take_picture vertical-center">
+                <p>
+                    Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
+                    <br /><br />
+                    Cliquez sur le bouton ci-dessous pour prendre une photo !
+                </p>
+
+                <button class="button_picture">Prendre une photo</button>
+                
+                <br /><br /><br /><br />
+                <button class="pass_step">Passer cette étape</button>
+
+            </div>
 
 			<div class="connected vertical-center">
 				<p>Vous êtes bien connecté</p>
@@ -82,5 +122,25 @@
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+
+<script>
+$(document).ready(function(){ 
+    var touch   = $('#resp-menu');
+    var menu    = $('.menu');
+ 
+    $(touch).on('click', function(e) {
+        e.preventDefault();
+        menu.slideToggle();
+    });
+    
+    $(window).resize(function(){
+        var w = $(window).width();
+        if(w > 767 && menu.is(':hidden')) {
+            menu.removeAttr('style');
+        }
+    });
+    
+});
+</script>
 	</body>
 </html>

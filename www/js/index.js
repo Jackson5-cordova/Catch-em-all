@@ -53,18 +53,25 @@ function init(){ // Tout ce qui est lancé au chargement de la page
 		resize();
 	});
 }
+
 function resize(){ // Tout ce qui est lancé au resize de la page (changement d'orientation)
 	vertical_center();
 }
 
 // Fonctions
 function signin_login(){
+
 	$('.signIn, .logIn, .sign_log_in').hide();
 	$('.connected').hide();
+	$('.return').hide();
+	$('.take_picture').hide();
+
 	var connected = false,
 		phone_number = '0633086880',
 		url_access = "http://rabillon.fr/";
+
 	$.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+
 		if(data != 'KO') {
 			var data = JSON.parse(data);
 			$('.carte_name_name').text(data.name);
@@ -75,44 +82,82 @@ function signin_login(){
 			$('.sign_log_in').show();
 		}
 	});
+
 	$('.sign_log_in button').on('click', function() {
+
 		var wut = $(this).attr('class');
 		$('.sign_log_in').hide();
+
 		if(wut == 'show_log_in') {
 			$('.logIn').show();
 		} else if(wut == 'show_sign_in') {
 			$('.signIn').show();
 		}
+
+		$('.return').show();
 	});
+
+	$('.return').on('click', function(e) {
+		e.preventDefault();
+
+		$('.signIn, .logIn').hide();
+		$('.sign_log_in').show();
+		$(this).hide();
+	});
+
 	$('.signIn').on('submit', function(e) {
+
+		$('.return').show();
 		e.preventDefault();
 		var data = {};
+
 		data['sign_name'] = $(this).find('input[name=name]').val();
 		data['sign_email'] = $(this).find('input[name=email]').val();
 		data['sign_phone_number'] = $(this).find('input[name=phone_number]').val();
 		data['sign_password'] = $(this).find('input[name=password]').val();
+		data['sign_picture'] = "img/avatar.jpg";
+
 		$.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
+
 			if(data != 'KO') {
 				var data = JSON.parse(data);
+				console.log(data);
+
 				$('.carte_name_name').text(data.name);
-				$('.carte_pokedex_name').text(data.pokedex);
+
+				if(data.pokedex != null) {
+					$('.carte_pokedex_name').text(data.pokedex);
+				} else {
+					$('.carte_pokedex_name').text('0');
+				}
+				console.log('picture', data.picture);
 				$('.carte_right img').attr('src', data.picture);
-				$('.connected').show();
+
+				// L'utilisateur arrive pour la première fois sur l'application, on le propose de se prendre en photo
+				$('.take_picture').show();
+
 				$('.signIn').hide();
 			} else {
 				$('.sign_log_in').show();
 			}
 		});
 	});
+
 	$('.logIn').on('submit', function(e) {
+		$('.return').show();
 		e.preventDefault();
+
 		var data = {};
 		data['log_name'] = $(this).find('input[name=name]').val();
 		data['log_password'] = $(this).find('input[name=password]').val();
+
 		$.post(url_access+'functions.php',{data:data, what_function:'log_in'},function(data) {
+
 			if(data != 'KO') {
+
 				$('.logIn').hide();
 				var data = JSON.parse(data);
+				
 				$('.carte_name_name').text(data.name);
 				$('.carte_pokedex_name').text(data.pokedex);
 				$('.carte_right img').attr('src', data.picture);
@@ -122,7 +167,37 @@ function signin_login(){
 			}
 		});
 	});
+
+	$('.button_picture').on('click', function() {
+		launchPicture();
+	});
+
+	$('.pass_step').on('click', function() {
+		$('.take_picture').hide();
+		$('.connected').show();
+	});
+
+	var launchPicture = function() {
+		alert('ok');
+	};
+
+	$('.menu .link_json').on('click', function() {
+
+		$('.news').show();
+
+		$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+
+			if(data != 'KO') {
+				var data = JSON.parse(data);
+				$('.news').append(data);
+			} else {
+				$('.sign_log_in').show();
+			}
+		});
+	});
+
 }
+
 
 function vertical_center(){
 	$('.vertical-center').each(function(){
