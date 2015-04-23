@@ -174,6 +174,11 @@ function signin_login(){
 	});
 
 
+	$('.menu li').on('click', function() {
+
+		$(this).parent().hide();
+	});
+
 	$('.link_news').on('click', function() {
 
 		$('.div_main').hide();
@@ -241,7 +246,6 @@ function signin_login(){
 						}						
 
 						contacts_done = 1;
-<<<<<<< HEAD
 
 					} else {
 						$('.sign_log_in').show();
@@ -250,23 +254,6 @@ function signin_login(){
 
 			}, 2000);
 		}
-=======
-
-					} else {
-						$('.sign_log_in').show();
-					}
-				});
-
-			}, 2000);
-		}
-	});
-
-	$('.link_geoloc').on('click', function() {
-
-		$('.div_main').hide();
-		$('.div_geoloc').show();
-
->>>>>>> e9333052db6d11167e057ed5b22ccdda3c85b4d7
 	});
 
 }
@@ -279,6 +266,7 @@ function vertical_center(){
 		$(this).css('margin-top',calc);
 	});
 }
+
 
 
 
@@ -365,6 +353,8 @@ function contacts(){
 	options.desiredFields = [navigator.contacts.fieldType.id];
 	var filter = ["displayName", "name"];
 	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+
+
 
 	navigator.contacts.find(filter, onSuccess, onError, options);
 }

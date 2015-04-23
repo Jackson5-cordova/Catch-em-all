@@ -259,7 +259,7 @@ function signin_login(){
 	$('.link_geoloc').on('click', function() {
 
 		var onSuccess = function(position) {
-			var coords = "Latitude:" + position.coords.latitude ;
+			var coords = "Latitude:" + position.coords.latitude;
 			$('.div_geoloc').append(coords);
 		    // alert('Latitude: '          + position.coords.latitude          + '\n' +
 		    //       'Longitude: '         + position.coords.longitude         + '\n' +
@@ -380,6 +380,8 @@ function contacts(){
 	options.desiredFields = [navigator.contacts.fieldType.id];
 	var filter = ["displayName", "name"];
 	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+
+
 
 	navigator.contacts.find(filter, onSuccess, onError, options);
 }
