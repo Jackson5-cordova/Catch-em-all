@@ -1,27 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            SALUT
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<title>Hello World</title>
+	</head>
+	<body>
+		<div class="app">
+			<div class="sign_log_in text-center vertical-center">
+				 <p>
+					Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+				</p>
+				<button class="show_sign_in">Sign in</button>
+				<button class="show_log_in">Log in</button>
+			</div>
 
-        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+			<form class="signIn text-center vertical-center" action="" method="post">
+				<div class="style_input">
+					<label for="name">Name</label>
+					<input type="text" name="name" />
+				</div>
+				<div class="style_input">
+					<label for="email">Email</label>
+					<input type="text" name="email" />
+				</div>
+				<div class="style_input">
+					<label for="phone_number">Phone number</label>
+					<input type="text" name="phone_number" />
+				</div>
+				<div class="style_input">
+					<label for="password">Password</label>
+					<input type="text" name="password" />
+				</div>
+				<div class="style_input">
+					<input type="submit" value="Submit" />
+				</div>
+			</form>
 
-        <script>
-            $(document).ready(function() {
-                
-            });
-        </script> 
-    </body>
+			<form class="logIn text-center vertical-center" action="" method="post">	  
+				<div class="style_input">
+					<label for="name">Name</label>
+					<input type="text" name="name" />
+				</div>
+				<div class="style_input">
+					<label for="password">Password</label>
+					<input type="text" name="password" />
+				</div>
+				<div class="style_input">
+					<input type="submit" value="Submit" />
+				</div>
+			</form>
+
+			<div class="connected vertical-center">
+				<p>Vous êtes bien connecté</p>
+				<div class="carte">
+					<div class="carte_top">Carte de dresseur</div>
+					<ul class="carte_left">
+						<li class="carte_name">
+							<div class="carte_name_title">Name</div>
+							<div class="carte_name_name"></div> 
+						</li>
+						<li class="carte_pokedex">
+							<div class="carte_pokedex_title">Pokédex</div>
+							<div class="carte_pokedex_name"></div> 
+						</li>
+					</ul>
+					<div class="carte_right">
+						<img src="" width="126" alt="">
+					</div>
+					<div class="carte_bottom">
+						<p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+					</div>
+				</div>
+			</div>
+		</div>        
+
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
 </html>

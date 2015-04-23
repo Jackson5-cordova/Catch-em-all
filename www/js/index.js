@@ -132,3 +132,9 @@ function vertical_center(){
 		$(this).css('margin-top',calc);
 	});
 }
+
+function contacts(){
+	if(page == "contact"){
+		
+	}
+}
