@@ -44,12 +44,20 @@ var app = {
 
 app.initialize();
 
-// Functions
-function init(){
+// Inits
+function init(){ // Tout ce qui est lancé au chargement de la page
 	signin_login();
+	vertical_center();
+	resize();
+	$(window).resize(function(){
+		resize();
+	});
+}
+function resize(){ // Tout ce qui est lancé au resize de la page (changement d'orientation)
 	vertical_center();
 }
 
+// Fonctions
 function signin_login(){
 
 	$('.signIn, .logIn, .sign_log_in').hide();
