@@ -1,3 +1,29 @@
+/* Fonts
+-------------------- */
+@font-face {
+	font-family: 'Game';
+	src: url('../fonts/game_font_7.eot');
+	src: url('../fonts/game_font_7.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/game_font_7.woff2') format('woff2'),
+		 url('../fonts/game_font_7.woff') format('woff'),
+		 url('../fonts/game_font_7.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gidole';
+	src: url('../fonts/gidole-regular.eot');
+	src: url('../fonts/gidole-regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/gidole-regular.woff2') format('woff2'),
+		 url('../fonts/gidole-regular.woff') format('woff'),
+		 url('../fonts/gidole-regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* General
+-------------------- */
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -12,8 +38,11 @@ body {
 	width:100%;
 }
 
-/* Portrait layout (default) */
+
+/* Portrait
+-------------------- */
 .app {
+	
 }
 
 .text-center {
@@ -71,9 +100,8 @@ body {
 }
 
 
-
-
-/* Landscape layout (with min-width) */
+/* Landscape
+-------------------- */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 	.app {
 		
