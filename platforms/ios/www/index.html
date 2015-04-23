@@ -17,106 +17,128 @@
 		<title>Catch'em All</title>
 	</head>
 	<body>
-		<nav> <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
-			<ul class="menu">
-				<li><a class="homer" href="#"><i class="fa fa-home"></i> HOME</a></li>
-				<li><a href="#"><i class="fa fa-tags"></i> CATEGORIES</a></li>
-				<li><a href="#"><i class="fa fa-camera"></i> PHOTOS</a></li>
-				<li><a href="#"><i class="fa fa-user"></i> CONTACTS</a></li>
-				<li><a href="#"><i class="fa fa-bullhorn"></i> NEWS</a></li>
-				<li><a href="#"><i class="fa fa-envelope"></i> CONTACT</a></li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> GEOLOCALISATION</a></li>
-			</ul>
-		</nav>
 
-		<div class="app text-center">
-			<h1>Welcome on Catch'em All !</h1>
-			<a href="#" class="return">Return</a>
-			<div class="sign_log_in vertical-center text-center">
-				 <p>
-					Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
-				</p>
-				<button class="show_sign_in">Sign in</button>
-				<button class="show_log_in">Log in</button>
-			</div>
+        <nav> <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
+          <ul class="menu">
+            <li><a class="homer" href="#"><i class="fa fa-home"></i> HOME</a></li>
+            <li><a href="#">PHOTOS</a></li>
+            <li><a href="#" class="link_contact">CONTACTS</a></li>
+            <li><a href="#" class="link_news">NEWS</a></li>
+            <li><a href="#">GEOLOCALISATION</a></li>
+          </ul>
+        </nav>
 
-			<form class="signIn text-center vertical-center" action="" method="post">
-				<div class="style_input">
-					<label for="name">Name</label>
-					<input type="text" name="name" />
-				</div>
-				<div class="style_input">
-					<label for="email">Email</label>
-					<input type="text" name="email" />
-				</div>
-				<div class="style_input">
-					<label for="phone_number">Phone number</label>
-					<input type="text" name="phone_number" />
-				</div>
-				<div class="style_input">
-					<label for="password">Password</label>
-					<input type="text" name="password" />
-				</div>
-				<div class="style_input">
-					<button type="submit">Submit</button>
-				</div>
-			</form>
+		<div class="app vertical-center text-center">
 
-			<form class="logIn text-center vertical-center" action="" method="post">	  
-				<div class="style_input">
-					<label for="name">Name</label>
-					<input type="text" name="name" />
-				</div>
-				<div class="style_input">
-					<label for="password">Password</label>
-					<input type="text" name="password" />
-				</div>
-				<div class="style_input">
-					<button type="submit">Submit</button>
-				</div>
-			</form>
+            <h1>Catch'em All !</h1>
 
-			<div class="take_picture vertical-center">
-				<p>
-					Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
-					<br /><br />
-					Cliquez sur le bouton ci-dessous pour prendre une photo !
-				</p>
+            <div class="div_contact div_main">
+                <h2>Contacts</h2>
 
-				<!-- <button class="button_picture" onclick="capturePhoto();">Prendre une photo</button> -->
-				<button onclick="capturePhoto();">Capture Photo</button><br>
-				<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo
-				Library</button><br>
-				<img id="image" src="" style="display:none;width:100%;">
-				
-				<br /><br /><br /><br />
-				<button class="pass_step">Passer cette étape</button>
+                <!-- <p>ID : <span class="user_id">*</span></p>
+                <p>NAME : <span class="user_name">*</span></p>
+                <p>EMAIL : <span class="user_email">*</span></p>
+                <p>PHONE : <span class="user_phone">*</span></p>
+                <p>PICTURE : <span class="user_picture">*</span></p>
+                <p>POKEDEX : <span class="user_pokedex">*</span></p> -->
+            </div>
 
-			</div>
+            <div class="div_news div_main">
+                <h2>News</h2>
+            </div>
 
-			<div class="connected vertical-center">
-				<p>Vous êtes bien connecté</p>
-				<div class="carte">
-					<div class="carte_top">Carte de dresseur</div>
-					<ul class="carte_left">
-						<li class="carte_name">
-							<div class="carte_name_title">Name</div>
-							<div class="carte_name_name"></div> 
-						</li>
-						<li class="carte_pokedex">
-							<div class="carte_pokedex_title">Pokédex</div>
-							<div class="carte_pokedex_name"></div> 
-						</li>
-					</ul>
-					<div class="carte_right">
-						<img src="" width="126" alt="">
-					</div>
-					<div class="carte_bottom">
-						<p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
-					</div>
+            <div class="div_home div_main">
+
+                <h2>Home</h2>
+                
+                <a href="#" class="return">Return</a>
+
+                <div class="sign_log_in text-center">
+                     <p>
+                        Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+                    </p>
+                    <button class="show_sign_in">Sign in</button>
+                    <button class="show_log_in">Log in</button>
+                </div>
+
+                <form class="signIn text-center" action="" method="post">
+                    <div class="style_input">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" />
+                    </div>
+                    <div class="style_input">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" />
+                    </div>
+                    <div class="style_input">
+                        <label for="phone_number">Phone number</label>
+                        <input type="text" name="phone_number" />
+                    </div>
+                    <div class="style_input">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" />
+                    </div>
+                    <div class="style_input">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+
+                <form class="logIn text-center" action="" method="post">      
+                    <div class="style_input">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" />
+                    </div>
+                    <div class="style_input">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" />
+                    </div>
+                    <div class="style_input">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+
+				<div class="take_picture vertical-center">
+					<p>
+						Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
+						<br /><br />
+						Cliquez sur le bouton ci-dessous pour prendre une photo !
+					</p>
+
+					<button onclick="capturePhoto();">Capture Photo</button><br>
+					<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+					<img id="image_taken" src="" style="display:none;width:100%;">
+					
+					<br /><br /><br /><br />
+					
+					<button id="image-submit" style="display:none" onclick="savePhoto();">Sauvegarder</button><button class="pass_step">Passer cette étape</button>
+
 				</div>
-			</div>
-		</div>        
+
+                <div class="connected">
+                    <p>Vous êtes bien connecté</p>
+                    <div class="carte">
+                        <div class="carte_top">Carte de dresseur</div>
+                        <ul class="carte_left">
+                            <li class="carte_name">
+                                <div class="carte_name_title">Name</div>
+                                <div class="carte_name_name"></div> 
+                            </li>
+                            <li class="carte_pokedex">
+                                <div class="carte_pokedex_title">Pokédex</div>
+                                <div class="carte_pokedex_name"></div> 
+                            </li>
+                        </ul>
+                        <div class="carte_right">
+                            <img src="" width="126" alt="">
+                        </div>
+                        <div class="carte_bottom">
+                            <p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>                  
 
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>

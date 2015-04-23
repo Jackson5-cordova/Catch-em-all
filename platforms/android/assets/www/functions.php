@@ -106,6 +106,49 @@
 
 		break;
 
+		case 'news':
+
+		$news = array();
+
+		$news[0] = 'Sortie de l\'application aujourd\'hui';
+		$news[1] = 'Installation des plugins';
+		$news[2] = 'Il était une fois dans un pays rose';
+
+		echo json_encode($news, true);
+
+		break;
+
+		case 'getContacts':
+
+		$data = $_POST['data'];
+
+		$query = $connect->query("
+			SELECT *
+			FROM users
+		");
+
+		$users = array();
+
+		while($rows = $query->fetch()) {
+			$users[] = $rows;
+		}
+
+		$response = array();
+
+		$k = 0;
+
+		foreach ($users as $key => $user) {
+			if(in_array($user['phone_number'], $data)) {
+				$response[$k]['name'] = $user['name']; 
+				$response[$k]['phone_number'] = $user['phone_number']; 
+				$k++;
+			}
+		}
+
+		echo json_encode($response, true);
+
+		break;
+
 	}
 
 ?>
