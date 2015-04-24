@@ -7,13 +7,26 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
+    <icon height="72" src="ressources/android/icons/drawable-hdpi.png" width="72" />
+    <icon height="36" src="ressources/android/icons/drawable-ldpi.png" width="36" />
+    <icon height="48" src="ressources/android/icons/drawable-mdpi.png" width="48" />
+    <icon height="96" src="ressources/android/icons/drawable-xhdpi.png" width="96" />
+    <icon height="96" src="ressources/android/icons/drawable.png" width="96" />
+    <splash height="480" src="ressources/android/splashscreen/drawable-land-hdpi.png" width="800" />
+    <splash height="200" src="ressources/android/splashscreen/drawable-land-ldpi.png" width="320" />
+    <splash height="320" src="ressources/android/splashscreen/drawable-land-mdpi.png" width="480" />
+    <splash height="720" src="ressources/android/splashscreen/drawable-land-xhdpi.png" width="1280" />
+    <splash height="800" src="ressources/android/splashscreen/drawable-port-hdpi.png" width="480" />
+    <splash height="320" src="ressources/android/splashscreen/drawable-port-ldpi.png" width="200" />
+    <splash height="480" src="ressources/android/splashscreen/drawable-port-mdpi.png" width="320" />
+    <splash height="1280" src="ressources/android/splashscreen/drawable-port-xhdpi.png" width="720" />
     <name>HelloCordova</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
+		A sample Apache Cordova application that responds to the deviceready event.
+	</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
+		Apache Cordova Team
+	</author>
     <content src="index.html" />
     <access origin="*" />
 </widget>
