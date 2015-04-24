@@ -16,7 +16,7 @@
 # Jour 3
 * Status bar
 * Storage
-* Connection
+* Network Information (Connection)
 * Device Orientation (Compass)
 
 ## Heure de passage : 16:40
