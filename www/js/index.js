@@ -171,8 +171,7 @@ function geolocalisation(){
 	    //       'Timestamp: '         + position.timestamp                + '\n');
 	};
 	function onError(error) {
-	    alert('code: '    + error.code    + '\n' +
-	          'message: ' + error.message + '\n');
+	    //alert('code: '    + error.code    + '\n' +
 	}
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }

@@ -119,9 +119,20 @@ form {
 /* Landscape
 -------------------- */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-	.app {
-		
-	}
+  .app {
+    
+  }
+}
+
+@media screen and (max-width:550px) {
+  .carte_left, .carte_right {
+    margin-top: 5px;
+  }
+
+  .carte_left li {
+    width: 110%;
+  }
+
 }
 
 h1 {
