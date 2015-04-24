@@ -130,7 +130,7 @@ h1 {
 
 nav {
   display: block;
-  background: #E95546;
+  background: #162a67;
 }
 
 .menu { display: block;border-bottom:1px solid rgba(0,0,0,.3);margin:0;}
@@ -249,14 +249,14 @@ nav {
   display: none;
   width: 100%;
   padding: 20px 15px;
-  background: #E95546;
+  background: #162a67;
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .menu-toggle:hover {
-  background: #E95546;
+  background: #162a67;
   color: #fff;
   text-decoration: none;
 }
@@ -270,7 +270,7 @@ a.homer { background: #FC6D58; }
 
 .menu li a { font-size: 12px; }
 
-a.active { background: #E95546; }
+a.active { background: #162a67; }
 }
  @media (max-width: 767px) {
 
