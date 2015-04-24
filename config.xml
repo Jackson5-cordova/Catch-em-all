@@ -57,4 +57,11 @@
 		<splash src="ressources/android/splashscreen/drawable-port-mdpi.png" width="320" height="480" />
 		<splash src="ressources/android/splashscreen/drawable-port-xhdpi.png" width="720" height="1280" />
 	</platform>
+
+	<feature name="UniversalAnalytics">
+		<param name="ios-package" value="UniversalAnalyticsPlugin" />
+	</feature>
+	<feature name="UniversalAnalytics">
+		<param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
+	</feature>
 </widget>
