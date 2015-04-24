@@ -13,5 +13,6 @@ Blocages :
 * Erreur empêchant d'ouvrir l'émulateur => supprimer et re-ajouter tous les plugins
 * Le plugin contact n'affichait pas les contact matchant avec la base de données par cause de mauvais retour de fonction.
 * Impossible de build => suppression du dossier platform, ios.json et android.json, et re-création des platforms
+* Problème de storage => Submit reload la page avant le INSERT dans la BDD => Button html, plus de problème
 
  Disponible sur IOS et Android.
