@@ -61,7 +61,7 @@ body {
 	left:0;
 	right:0;
 	bottom:0;
-	padding:20px;
+	padding:61px 20px 20px;
 }
 
 .text-center {
@@ -133,7 +133,7 @@ nav {
   background: #E95546;
 }
 
-.menu { display: block;border-bottom:1px solid rgba(0,0,0,.3);margin:0; }
+.menu { display: block;border-bottom:1px solid rgba(0,0,0,.3);margin:0;}
 
 .menu li {
   display: inline-block;
