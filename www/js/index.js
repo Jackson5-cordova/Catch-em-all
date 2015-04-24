@@ -59,6 +59,93 @@ function resize(){ // Tout ce qui est lancé au resize de la page (changement d'
 }
 
 // Fonctions
+function menu(){
+	$('.menu-toggle,.menu a').click(function(){
+		$('.menu').slideToggle();
+	});
+	$('.menu a').click(function(){
+		var menu = $(this).attr('data-menu');
+		$('.app [data-menu="'+menu+'"]').show().siblings('[data-menu]').hide();
+		if(menu == "contacts"){
+			contact();
+		}else if(menu == "news"){
+			news();
+		}else if(menu == "geolocalisation"){
+			geolocalisation();
+		}
+	});
+}
+
+function contact(){
+	var contacts_done = 0;
+	if(contacts_done === 0) {
+		$('.div_contact').html('<h2>Contactsg</h2>').append('<div class="loading">Waiting...</div>');
+		setTimeout(function() {
+			var data;
+			data = contacts();
+			$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
+				if(data != 'KO') {
+					$('.loading').remove();
+					var data = JSON.parse(data);
+					if(data.length != 0) {
+						for (var i = 0; i < data.length; i++) {
+							$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+						}
+					} else {
+						$('.div_contact').append('<p>Aucun contact trouvé</p>');
+					}						
+					contacts_done = 1;
+				} else {
+					$('.sign_log_in').show();
+				}
+			});
+		}, 2000);
+	}
+}
+
+function news(){
+	var news_done = 0,
+		url_access = "http://rabillon.fr/";
+	if(news_done === 0) {
+		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Waiting...</div>');
+		setTimeout(function() {
+			$.post(url_access+'functions.php',{what_function:'news'},function(data) {
+				if(data != 'KO') {
+					$('.loading').remove();
+					var data = JSON.parse(data);
+					for (the_data in data) {
+						$('.div_news').append('<p>'+data[the_data]+'</p>');
+					}
+					news_done = 1;
+				} else {
+					$('.sign_log_in').show();
+				}
+			});
+		}, 2000);
+	}
+}
+
+function geolocalisation(){
+	var onSuccess = function(position) {
+		var coords = "Latitude:" + position.coords.latitude;
+		$('.div_geoloc').html('<h2>Geolocalisation</h2>').append(coords);
+	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
+	    //       'Longitude: '         + position.coords.longitude         + '\n' +
+	    //       'Altitude: '          + position.coords.altitude          + '\n' +
+	    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+	    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+	    //       'Heading: '           + position.coords.heading           + '\n' +
+	    //       'Speed: '             + position.coords.speed             + '\n' +
+	    //       'Timestamp: '         + position.timestamp                + '\n');
+	};
+	function onError(error) {
+	    alert('code: '    + error.code    + '\n' +
+	          'message: ' + error.message + '\n');
+	}
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+
+
 function signin_login(){
 	$('.signIn, .logIn, .sign_log_in,.connected,.return,.take_picture').hide();
 	var contacts_done = 0;
@@ -174,110 +261,6 @@ function signin_login(){
 		$('.connected').show();
 	});
 
-	$('.link_news').on('click', function() {
-
-		$('.div_main').hide();
-		$('.div_news').show();
-
-		if(news_done === 0) {
-
-			$('.div_news').append('<div class="loading">Waiting...</div>');
-
-			setTimeout(function() {
-
-				$.post(url_access+'functions.php',{what_function:'news'},function(data) {
-
-					if(data != 'KO') {
-
-						$('.loading').remove();
-
-						var data = JSON.parse(data);
-						for (the_data in data) {
-							$('.div_news').append('<p>'+data[the_data]+'</p>');
-						}
-
-						news_done = 1;
-
-					} else {
-						$('.sign_log_in').show();
-					}
-				});
-
-			}, 2000);
-		}
-		
-	});
-
-	$('.link_contact').on('click', function() {
-
-		$('.div_main').hide();
-		$('.div_contact').show();
-
-		if(contacts_done === 0) {
-
-			$('.div_contact').append('<div class="loading">Waiting...</div>');
-
-			setTimeout(function() {
-
-				var data;
-
-				data = contacts();
-
-				$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
-
-					if(data != 'KO') {
-
-						$('.loading').remove();
-
-						var data = JSON.parse(data);
-						console.log(data);
-
-						if(data.length != 0) {
-							for (var i = 0; i < data.length; i++) {
-								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-							}
-						} else {
-							$('.div_contact').append('<p>Aucun contact trouvé</p>');
-						}						
-
-						contacts_done = 1;
-
-					} else {
-						$('.sign_log_in').show();
-					}
-				});
-
-			}, 2000);
-		}
-	});
-
-	$('.link_geoloc').on('click', function() {
-
-		var onSuccess = function(position) {
-			var coords = "Latitude:" + position.coords.latitude;
-			$('.div_geoloc').append(coords);
-		    // alert('Latitude: '          + position.coords.latitude          + '\n' +
-		    //       'Longitude: '         + position.coords.longitude         + '\n' +
-		    //       'Altitude: '          + position.coords.altitude          + '\n' +
-		    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
-		    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-		    //       'Heading: '           + position.coords.heading           + '\n' +
-		    //       'Speed: '             + position.coords.speed             + '\n' +
-		    //       'Timestamp: '         + position.timestamp                + '\n');
-		};
-
-		// onError Callback receives a PositionError object
-		//
-		function onError(error) {
-		    alert('code: '    + error.code    + '\n' +
-		          'message: ' + error.message + '\n');
-		}
-
-		$('.div_main').hide();
-		$('.div_geoloc').show();
-		navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	});
-
 }
 
 function vertical_center(){
@@ -286,13 +269,6 @@ function vertical_center(){
 			parentH	= $(this).parent().height(),
 			calc	= (parentH / 2) - (elH / 2);
 		$(this).css('margin-top',calc);
-	});
-}
-
-
-function menu(){
-	$('.menu-toggle').click(function(){
-		$('.menu').slideToggle();
 	});
 }
 
