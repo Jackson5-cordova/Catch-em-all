@@ -90,6 +90,13 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/com.patrickheneise.cordova.statusbar/www/StatusBar.js",
+        "id": "com.patrickheneise.cordova.statusbar.StatusBar",
+        "clobbers": [
+            "navigator.statusbar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -97,7 +104,8 @@ module.exports.metadata =
 {
     "org.apache.cordova.contacts": "0.2.16",
     "org.apache.cordova.camera": "0.3.6",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.geolocation": "0.3.12",
+    "com.patrickheneise.cordova.statusbar": "0.0.2"
 }
 // BOTTOM OF METADATA
 });

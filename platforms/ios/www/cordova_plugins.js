@@ -1,6 +1,13 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.patrickheneise.cordova.statusbar/www/StatusBar.js",
+        "id": "com.patrickheneise.cordova.statusbar.StatusBar",
+        "clobbers": [
+            "navigator.statusbar"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.camera/www/CameraConstants.js",
         "id": "org.apache.cordova.camera.Camera",
         "clobbers": [
@@ -137,6 +144,7 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.patrickheneise.cordova.statusbar": "0.0.2",
     "org.apache.cordova.camera": "0.3.6",
     "org.apache.cordova.contacts": "0.2.16",
     "org.apache.cordova.geolocation": "0.3.12"
