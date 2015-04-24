@@ -136,7 +136,7 @@ nav {
   right:0;
   z-index:2;
   display: block;
-  background: #E95546;
+  background: #162a67;
 }
 
 .menu {
@@ -174,7 +174,7 @@ nav {
   display:block;
   width: 100%;
   padding: 20px 15px;
-  background: #E95546;
+  background: #162a67;
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
@@ -182,7 +182,50 @@ nav {
 }
 
 .menu-toggle:hover {
+<<<<<<< HEAD
+  background: #162a67;
+  color: #fff;
+  text-decoration: none;
+}
+
+a.homer { background: #FC6D58; }
+ @media (min-width: 768px) and (max-width: 979px) {
+
+.mainWrap { width: 768px; }
+
+.menu ul { top: 37px; }
+
+.menu li a { font-size: 12px; }
+
+a.active { background: #162a67; }
+}
+ @media (max-width: 767px) {
+
+.mainWrap {
+  width: auto;
+  padding: 50px 20px;
+}
+
+.menu { display: none; }
+
+.menu-toggle { display: block; }
+
+nav {
+  margin: 0;
+  background: none;
+}
+
+.menu li {
+  display: block;
+  margin: 0;
+}
+
+.menu li a {
+  background: #fff;
+  color: #797979;
+=======
   color:white;
+>>>>>>> 08f3a697b4f321637c0b65cda12bbf8a18c88407
 }
 
 a.homer {

@@ -99,8 +99,8 @@ function contact(){
 					}
 				} else {
 					$('.div_contact').append('<p>Aucun contact trouvé</p>');
-				}						
-				contacts_done = 1;
+				}
+
 			} else {
 				alert('erreur');
 			}
@@ -183,7 +183,6 @@ function home(){
 	} else {
 		$('.sign_log_in').show();
 	}
-
 
 	$('.signIn').on('submit', function(e) {
 
