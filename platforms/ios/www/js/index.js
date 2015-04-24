@@ -38,7 +38,6 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
-		console.log(navigator.contacts);
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -80,7 +79,8 @@ function menu(){
 }
 
 function contact(){
-	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
+
+	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Waiting...</div>');
 
 	setTimeout(function() {
 		var data;
@@ -94,11 +94,8 @@ function contact(){
 				var data = JSON.parse(data);
 
 				if(data.length != 0) {
-					$('.div_contact').append('<h3>Des contacts ont été trouvés !</h3>');
-					$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
 					for (var i = 0; i < data.length; i++) {
 						$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-						$('.div_contact').append('<p><button>Ajouter en ami</button></p>');
 					}
 				} else {
 					$('.div_contact').append('<p>Aucun contact trouvé</p>');
@@ -115,7 +112,7 @@ function news(){
 	var news_done = 0;
 
 	if(news_done === 0) {
-		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Chargement...</div>');
+		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Waiting...</div>');
 		setTimeout(function() {
 			$.post(url_access+'functions.php',{what_function:'news'},function(data) {
 				if(data != 'KO') {
@@ -135,11 +132,8 @@ function news(){
 
 function geolocalisation(){
 	var onSuccess = function(position) {
-		$('.div_geoloc').append('<h3>Votre localisation a été trouvée !</h3>');
 		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
-		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p><br /><br /><br />');
-		$('.div_geoloc').append('<p>Il n\'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !</p>');
-		$('.div_geoloc').append('<a href="geoloc.html" class="button">Me géolocaliser une nouvelle fois</a>');
+		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p>');
 	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
 	    //       'Longitude: '         + position.coords.longitude         + '\n' +
 	    //       'Altitude: '          + position.coords.altitude          + '\n' +
@@ -358,7 +352,7 @@ function storage(){
 
 	$('.formulaire').submit(function(){
 		input = $( "input:first" ).val();
-		alert(input);
+		alert(input)
 		db.transaction(function(tx){
 			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input]);
 		});

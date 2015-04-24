@@ -110,7 +110,7 @@
 
 		$news = array();
 
-		$news[0] = 'Sortie de l\'application aujourd\'hui';
+		$news[0] = '<div><img src="img/logo.png" /></div>';
 		$news[1] = 'Installation des plugins';
 		$news[2] = 'Il était une fois dans un pays rose';
 

@@ -110,9 +110,9 @@
 
 		$news = array();
 
-		$news[0] = 'Sortie de l\'application aujourd\'hui';
-		$news[1] = 'Installation des plugins';
-		$news[2] = 'Il était une fois dans un pays rose';
+		$news[0] = 'Sortie de l\'application aujourd\'hui ! <div><img src="img/logo.png" /></div>';
+		$news[1] = 'Installation des plugins pour votre confort !';
+		$news[2] = 'Sortie dans quelques jours, vous pourrez bientôt attraper vos pokémons préférez où que vous soyez ! <div><img width="400" src="img/pokemon-logo.jpg" />';
 
 		echo json_encode($news, true);
 
