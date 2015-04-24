@@ -79,7 +79,7 @@ function menu(){
 function contact(){
 	var contacts_done = 0;
 	if(contacts_done === 0) {
-		$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Waiting...</div>');
+		$('.div_contact').html('<h2>Contactsg</h2>').append('<div class="loading">Waiting...</div>');
 		setTimeout(function() {
 			var data;
 			data = contacts();
