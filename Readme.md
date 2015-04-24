@@ -1,4 +1,4 @@
-Pitch de l'application : 
+Speach de l'application : 
 
 Catch'em all vous permet de réaliser vos rêves de dresseur pokémon. 
 Grâce à la géolocalisation, recherchez et capturez les petits monstres se cachant autour de vous et affrontez vos amis !
