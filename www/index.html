@@ -17,15 +17,13 @@
 		<nav>
 			<a class="menu-toggle" href="#">Menu</a>
 			<ul class="menu">
-				<li><a href="#" class="active link_home">HOME</a></li>
-				<li><a href="#" class="link_contact">CONTACTS</a></li>
-				<li><a href="#" class="link_news">NEWS</a></li>
-				<li><a href="#" class="link_geoloc">GEOLOCALISATION</a></li>
+				<li><a href="#" class="active" data-menu="home">HOME</a></li>
+				<li><a href="#" data-menu="contacts">CONTACTS</a></li>
+				<li><a href="#" data-menu="news">NEWS</a></li>
+				<li><a href="#" data-menu="geolocalisation">GEOLOCALISATION</a></li>
 			</ul>
 		</nav>
-		<div class="app vertical-center text-center">
-
-			<h1>Catch'em All !</h1>
+		<div class="app text-center">
 
 			<div class="div_contact div_main">
 				<h2>Contacts</h2>
@@ -38,10 +36,10 @@
 				<p>POKEDEX : <span class="user_pokedex">*</span></p> -->
 			</div>
 
-			<div class="div_news div_main">
+			<div class="div_news div_main" data-menu="news">
 				<h2>News</h2>
 			</div>
-			<div class="div_geoloc div_main">
+			<div class="div_geoloc div_main" data-menu="geolocalisation">
 				<h2>Geolocalisation</h2>
 			</div>
 			<div class="div_home div_main">
@@ -94,7 +92,7 @@
 					</div>
 				</form>
 
-				<div class="take_picture vertical-center">
+				<div class="take_picture">
 					<p>
 						Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
 						<br /><br />

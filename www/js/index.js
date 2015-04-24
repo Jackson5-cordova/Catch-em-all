@@ -174,12 +174,6 @@ function signin_login(){
 		$('.connected').show();
 	});
 
-
-	$('.menu li').on('click', function() {
-
-		$(this).parent().hide();
-	});
-
 	$('.link_news').on('click', function() {
 
 		$('.div_main').hide();
@@ -379,7 +373,6 @@ function contacts(){
 	function onError(contactError) {
 	    alert('onError!');
 	};
-	$('.menu').hide();
 
 	var options      = new ContactFindOptions();
 	options.filter   = "";

@@ -47,6 +47,7 @@ app.initialize();
 function init(){ // Tout ce qui est lancé au chargement de la page
 	signin_login();
 	vertical_center();
+	menu();
 	resize();
 	$(window).resize(function(){
 		resize();
@@ -173,12 +174,6 @@ function signin_login(){
 		$('.connected').show();
 	});
 
-
-	$('.menu li').on('click', function() {
-
-		$(this).parent().hide();
-	});
-
 	$('.link_news').on('click', function() {
 
 		$('.div_main').hide();
@@ -295,6 +290,12 @@ function vertical_center(){
 }
 
 
+function menu(){
+	$('.menu-toggle').click(function(){
+		$('.menu').slideToggle();
+	});
+}
+
 
 
 
@@ -372,7 +373,6 @@ function contacts(){
 	function onError(contactError) {
 	    alert('onError!');
 	};
-	$('.menu').hide();
 
 	var options      = new ContactFindOptions();
 	options.filter   = "";

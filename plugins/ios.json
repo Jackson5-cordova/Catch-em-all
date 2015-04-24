@@ -7,24 +7,6 @@
         "files": {
             "framework": {
                 "parents": {
-                    "AddressBook.framework": [
-                        {
-                            "xml": true,
-                            "count": 1
-                        }
-                    ],
-                    "AddressBookUI.framework": [
-                        {
-                            "xml": true,
-                            "count": 1
-                        }
-                    ],
-                    "CoreGraphics.framework": [
-                        {
-                            "xml": false,
-                            "count": 4
-                        }
-                    ],
                     "ImageIO.framework": [
                         {
                             "xml": true,
@@ -35,6 +17,12 @@
                         {
                             "xml": false,
                             "count": 2
+                        }
+                    ],
+                    "CoreGraphics.framework": [
+                        {
+                            "xml": false,
+                            "count": 3
                         }
                     ],
                     "AssetsLibrary.framework": [
@@ -48,6 +36,18 @@
                             "xml": false,
                             "count": 1
                         }
+                    ],
+                    "AddressBook.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ],
+                    "AddressBookUI.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -55,15 +55,15 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Contacts\"><param name=\"ios-package\" value=\"CDVContacts\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"ios-package\" value=\"CDVContacts\" /></feature>",
                             "count": 1
                         },
                         {
@@ -86,10 +86,10 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.contacts": {
+        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
-        "org.apache.cordova.camera": {
+        "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.geolocation": {

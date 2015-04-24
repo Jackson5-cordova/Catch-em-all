@@ -1,11 +1,1 @@
-platforms/android/assets/www/img/carrejaune.gif
-platforms/android/assets/www/img/carrejaune.png
-platforms/android/assets/www/img/carte.png
-platforms/android/assets/www/js/jquery-1.11.2.min.js
-platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata/audrwi.xcuserdatad/
-platforms/ios/HelloCordova.xcodeproj/project.xcworkspace/xcuserdata/audrwi.xcuserdatad/
-platforms/ios/HelloCordova.xcodeproj/xcuserdata/audrwi.xcuserdatad/
-platforms/ios/www/img/carrejaune.gif
-platforms/ios/www/img/carrejaune.png
-platforms/ios/www/img/carte.png
-platforms/ios/www/js/jquery-1.11.2.min.js
+platforms/*
