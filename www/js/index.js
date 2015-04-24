@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var url_access = "http://rabillon.fr/";
+
 var app = {
 	// Application Constructor
 	initialize: function() {
@@ -45,7 +48,6 @@ app.initialize();
 
 // Inits
 function init(){ // Tout ce qui est lancé au chargement de la page
-	signin_login();
 	vertical_center();
 	menu();
 	resize();
@@ -77,35 +79,38 @@ function menu(){
 }
 
 function contact(){
-	var contacts_done = 0;
-	if(contacts_done === 0) {
-		$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Waiting...</div>');
-		setTimeout(function() {
-			var data;
-			data = contacts();
-			$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
-				if(data != 'KO') {
-					$('.loading').remove();
-					var data = JSON.parse(data);
-					if(data.length != 0) {
-						for (var i = 0; i < data.length; i++) {
-							$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-						}
-					} else {
-						$('.div_contact').append('<p>Aucun contact trouvé</p>');
-					}						
-					contacts_done = 1;
+
+	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Waiting...</div>');
+
+	setTimeout(function() {
+		var data;
+
+		data = contacts();
+
+		$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
+
+			if(data != 'KO') {
+				$('.loading').remove();
+				var data = JSON.parse(data);
+
+				if(data.length != 0) {
+					for (var i = 0; i < data.length; i++) {
+						$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+					}
 				} else {
-					$('.sign_log_in').show();
-				}
-			});
-		}, 2000);
-	}
+					$('.div_contact').append('<p>Aucun contact trouvé</p>');
+				}						
+				contacts_done = 1;
+			} else {
+				alert('erreur');
+			}
+		});
+	}, 2000);
 }
 
 function news(){
-	var news_done = 0,
-		url_access = "http://rabillon.fr/";
+	var news_done = 0;
+
 	if(news_done === 0) {
 		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Waiting...</div>');
 		setTimeout(function() {
@@ -127,8 +132,8 @@ function news(){
 
 function geolocalisation(){
 	var onSuccess = function(position) {
-		var coords = "Latitude:" + position.coords.latitude;
-		$('.div_geoloc').html('<h2>Geolocalisation</h2>').append(coords);
+		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
+		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p>');
 	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
 	    //       'Longitude: '         + position.coords.longitude         + '\n' +
 	    //       'Altitude: '          + position.coords.altitude          + '\n' +
@@ -146,56 +151,42 @@ function geolocalisation(){
 }
 
 
-function signin_login(){
-	$('.signIn, .logIn, .sign_log_in,.connected,.return,.take_picture').hide();
+function home(){
+
+	$('.connected, .take_picture, .sign_log_in').hide();
 	var contacts_done = 0;
 	var news_done = 0;
 
-	$('.div_main').hide();
-	$('.div_home').show();
+	/*
+	*	LES VARIABLES connected et PHONE_NUMBER SONT A RECUPERER DEPUIS LE LOCALSTORAGE DE L UTILISATEUR
+	*/
 
-	var connected = false,
-		phone_number = '0633086880',
-		url_access = "http://rabillon.fr/";
+	var connected = true,
+		phone_number = '0633086883';
 
-	$.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+	if(connected == true) {
+
+		$.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
 
 		if(data != 'KO') {
 			var data = JSON.parse(data);
-			$('.carte_name_name').text(data.name);
-			$('.carte_pokedex_name').text(data.pokedex);
-			$('.carte_right img').attr('src', data.picture);
-			$('.connected').show();
-		} else {
-			$('.sign_log_in').show();
-		}
-	});
+				$('.carte_name_name').text(data.name);
+				$('.carte_pokedex_name').text(data.pokedex);
+				$('.carte_right img').attr('src', data.picture);
+				$('.connected').show();
+			} else {
+				alert('error');
+			}
 
-	$('.sign_log_in button').on('click', function() {
+		});
 
-		var wut = $(this).attr('class');
-		$('.sign_log_in').hide();
-
-		if(wut == 'show_log_in') {
-			$('.logIn').show();
-		} else if(wut == 'show_sign_in') {
-			$('.signIn').show();
-		}
-
-		$('.return').show();
-	});
-
-	$('.return').on('click', function(e) {
-		e.preventDefault();
-
-		$('.signIn, .logIn').hide();
+	} else {
 		$('.sign_log_in').show();
-		$(this).hide();
-	});
+	}
+
 
 	$('.signIn').on('submit', function(e) {
 
-		$('.return').show();
 		e.preventDefault();
 		var data = {};
 
@@ -225,31 +216,6 @@ function signin_login(){
 				$('.take_picture').show();
 
 				$('.signIn').hide();
-			} else {
-				$('.sign_log_in').show();
-			}
-		});
-	});
-
-	$('.logIn').on('submit', function(e) {
-		$('.return').show();
-		e.preventDefault();
-
-		var data = {};
-		data['log_name'] = $(this).find('input[name=name]').val();
-		data['log_password'] = $(this).find('input[name=password]').val();
-
-		$.post(url_access+'functions.php',{data:data, what_function:'log_in'},function(data) {
-
-			if(data != 'KO') {
-
-				$('.logIn').hide();
-				var data = JSON.parse(data);
-				
-				$('.carte_name_name').text(data.name);
-				$('.carte_pokedex_name').text(data.pokedex);
-				$('.carte_right img').attr('src', data.picture);
-				$('.connected').show();
 			} else {
 				$('.sign_log_in').show();
 			}
@@ -329,6 +295,11 @@ function onFailPhoto(message) {
 
 
 function contacts(){
+
+	var all_contacts = {};
+	all_contacts[0] = "0633086883";
+	return all_contacts;
+
 	function onSuccess(contacts) {
 
 		alert('Found ' + contacts.length + ' contacts.');
