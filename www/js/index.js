@@ -38,7 +38,6 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
-		console.log(navigator.contacts);
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -50,8 +49,8 @@ app.initialize();
 // Inits
 function init(){ // Tout ce qui est lancé au chargement de la page
 	vertical_center();
-	menu();
 	resize();
+	menu();
 	$(window).resize(function(){
 		resize();
 	});
@@ -61,21 +60,12 @@ function resize(){ // Tout ce qui est lancé au resize de la page (changement d'
 	vertical_center();
 }
 
+var connected = false;
+
 // Fonctions
 function menu(){
-	$('.menu-toggle,.menu a').click(function(){
+	$('.menu-toggle').click(function(){
 		$('.menu').slideToggle();
-	});
-	$('.menu a').click(function(){
-		var menu = $(this).attr('data-menu');
-		$('.app [data-menu="'+menu+'"]').show().siblings('[data-menu]').hide();
-		if(menu == "contacts"){
-			contact();
-		}else if(menu == "news"){
-			news();
-		}else if(menu == "geolocalisation"){
-			geolocalisation();
-		}
 	});
 }
 
@@ -83,9 +73,9 @@ function contact(){
 	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
 
 	setTimeout(function() {
-		var data;
+		var data = contacts();
 
-		data = contacts();
+		console.log(data);
 
 		$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
 
@@ -98,7 +88,7 @@ function contact(){
 					$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
 					for (var i = 0; i < data.length; i++) {
 						$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-						$('.div_contact').append('<p><button>Ajouter en ami</button></p>');
+						// $('.div_contact').append('<p><button>Ajouter en ami</button></p>');
 					}
 				} else {
 					$('.div_contact').append('<p>Aucun contact trouvé</p>');
@@ -300,40 +290,32 @@ function onFailPhoto(message) {
 
 
 function contacts(){
-
-	var all_contacts = {};
-	all_contacts[0] = "0633086883";
-	return all_contacts;
-
 	function onSuccess(contacts) {
-
-		alert('Found ' + contacts.length + ' contacts.');
+		console.log(contacts.length + ' contacts trouvés.');
 
 		var all_contacts = {};
 
-	 	//for(j = 0;j < contacts.length; j++){
-		// 	for(i = 0;i < contacts[j].phoneNumbers.length; i++){
-		// 		all_contacts[i] = contacts[j].phoneNumbers[i].value;
-		// 		all_contacts[i] = '0633086883';
-		// 		return all_contacts;
-		// 	}
-		// }
+	 	for(i = 0;i < contacts.length; i++){
+	 		console.log(contact[i].phoneNumbers);
+			for(j = 0;j < contacts[i].phoneNumbers.length; j++){
+				all_contacts[j] = contacts[i].phoneNumbers[j].value;
+				//all_contacts[j] = '0633086883';
+				return all_contacts;
+			}
+		}
 
-		all_contacts[0] = "0633086883";
-		return all_contacts;
+		//all_contacts[0] = "0633086883";
+		//return all_contacts;
 	};
 	function onError(contactError) {
 	    alert('onError!');
 	};
-
 	var options      = new ContactFindOptions();
 	options.filter   = "";
 	options.multiple = true;
 	options.desiredFields = [navigator.contacts.fieldType.id];
 	var filter = ["displayName", "name"];
 	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
-
-
 
 	navigator.contacts.find(filter, onSuccess, onError, options);
 }

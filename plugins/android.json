@@ -27,14 +27,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
                             "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
                             "count": 1
                         },
@@ -44,6 +36,14 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
                             "count": 1
                         }
                     ]
@@ -55,10 +55,10 @@
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
-        "org.apache.cordova.geolocation": {
+        "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
-        "org.apache.cordova.contacts": {
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },
