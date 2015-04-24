@@ -40,6 +40,8 @@ var app = {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
 		check_con();
+		window.analytics.startTrackerWithId('UA-62250325-1');
+		window.analytics.trackView("Page d'accueil");
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
