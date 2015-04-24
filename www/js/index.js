@@ -95,7 +95,7 @@ function contact(){
 					}
 
 				} else {
-					//alert('erreur');
+					alert('erreur');
 				}
 			});
 		});
@@ -114,17 +114,13 @@ function contacts(callback){
 			for(j = 0;j < contacts[i].phoneNumbers.length; j++){
 				all_contacts[j] = contacts[i].phoneNumbers[j].value;
 				console.log(all_contacts);
-				//all_contacts[j] = '0633086883';
 			}
 		}
 		numeros = all_contacts;
 		callback();
-
-		//all_contacts[0] = "0633086883";
-		//return all_contacts;
 	};
 	function onError(contactError) {
-	    //alert('onError!');
+	    alert('onError!');
 	};
 	var options      = new ContactFindOptions();
 	options.filter   = "";
@@ -175,7 +171,7 @@ function geolocalisation(){
 	    //       'Timestamp: '         + position.timestamp                + '\n');
 	};
 	function onError(error) {
-	    //alert('code: '    + error.code    + '\n' +
+	    alert('code: '    + error.code    + '\n' +
 	          'message: ' + error.message + '\n');
 	}
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -215,7 +211,7 @@ function home(){
 				$('.carte_right img').attr('src', data.picture);
 				$('.connected').show();
 			} else {
-				//alert('error');
+				alert('error');
 			}
 
 		});
@@ -307,6 +303,7 @@ function onPhotoDataSuccess(imageURI) {
 	cameraImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
+	//alert(imageURI);
 }
 function onPhotoURISuccess(imageURI) {
 	//console.log(imageURI);
@@ -315,6 +312,7 @@ function onPhotoURISuccess(imageURI) {
 	galleryImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
+	//alert(imageURI);
 }
 function capturePhoto() {
 	navigator.camera.getPicture(onPhotoDataSuccess, onFailPhoto, { quality : 100,
@@ -335,20 +333,24 @@ function getPhoto(source) {
 	});
 }
 function onFailPhoto(message) {
-	//alert('Failed because: ' + message);
+	alert('Failed because: ' + message);
 }
 
 function storage(){
 	var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 	db.transaction(function(tx){
 
-		tx.executeSql('CREATE TABLE IF N@OT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
 		tx.executeSql
 		("SELECT * FROM USERS", [], 
 		    function(tx, results) {
-		        if (results.rows) {
+		        if(results.rows) {
 		            for (var i = 0; i < results.rows.length; i++) {
-		                $('.div_storage').append("User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
+		            	if(i > 0){
+		                	$('.div_storage').append("<br/>User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
+		            	}else{
+		                	$('.div_storage').append("User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
+		                }
 		            }
 		        }
 		    }
