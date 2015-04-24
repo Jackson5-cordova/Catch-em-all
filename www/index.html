@@ -6,98 +6,95 @@
 		<meta name="msapplication-tap-highlight" content="no" />
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-
 		<link rel="stylesheet" type="text/css" href="css/foundation.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
-
 		<script src="js/prefixfree.min.js"></script>
-
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 		<title>Catch'em All</title>
 	</head>
 	<body>
 
-        <nav> <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
-          <ul class="menu">
-            <li><a class="homer" href="#"><i class="fa fa-home"></i> HOME</a></li>
-            <li><a href="#">PHOTOS</a></li>
-            <li><a href="#" class="link_contact">CONTACTS</a></li>
-            <li><a href="#" class="link_news">NEWS</a></li>
-            <li><a href="#" class="link_geoloc">GEOLOCALISATION</a></li>
-          </ul>
-        </nav>
+		<nav>
+			<a class="menu-toggle" href="#">Menu</a>
+			<ul class="menu">
+				<li><a href="#" class="active link_home">HOME</a></li>
+				<li><a href="#" class="link_contact">CONTACTS</a></li>
+				<li><a href="#" class="link_news">NEWS</a></li>
+				<li><a href="#" class="link_geoloc">GEOLOCALISATION</a></li>
+			</ul>
+		</nav>
 
 		<div class="app vertical-center text-center">
 
-            <h1>Catch'em All !</h1>
+			<h1>Catch'em All !</h1>
 
-            <div class="div_contact div_main">
-                <h2>Contacts</h2>
+			<div class="div_contact div_main">
+				<h2>Contacts</h2>
 
-                <!-- <p>ID : <span class="user_id">*</span></p>
-                <p>NAME : <span class="user_name">*</span></p>
-                <p>EMAIL : <span class="user_email">*</span></p>
-                <p>PHONE : <span class="user_phone">*</span></p>
-                <p>PICTURE : <span class="user_picture">*</span></p>
-                <p>POKEDEX : <span class="user_pokedex">*</span></p> -->
-            </div>
+				<!-- <p>ID : <span class="user_id">*</span></p>
+				<p>NAME : <span class="user_name">*</span></p>
+				<p>EMAIL : <span class="user_email">*</span></p>
+				<p>PHONE : <span class="user_phone">*</span></p>
+				<p>PICTURE : <span class="user_picture">*</span></p>
+				<p>POKEDEX : <span class="user_pokedex">*</span></p> -->
+			</div>
 
-            <div class="div_news div_main">
-                <h2>News</h2>
-            </div>
-            <div class="div_geoloc div_main">
-                <h2>Geolocalisation</h2>
-            </div>
-            <div class="div_home div_main">
+			<div class="div_news div_main">
+				<h2>News</h2>
+			</div>
+			<div class="div_geoloc div_main">
+				<h2>Geolocalisation</h2>
+			</div>
+			<div class="div_home div_main">
 
-                <h2>Home</h2>
-                
-                <a href="#" class="return">Return</a>
+				<h2>Home</h2>
+				
+				<a href="#" class="return">Return</a>
 
-                <div class="sign_log_in text-center">
-                     <p>
-                        Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
-                    </p>
-                    <button class="show_sign_in">Sign in</button>
-                    <button class="show_log_in">Log in</button>
-                </div>
+				<div class="sign_log_in text-center">
+					 <p>
+						Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+					</p>
+					<button class="show_sign_in">Sign in</button>
+					<button class="show_log_in">Log in</button>
+				</div>
 
-                <form class="signIn text-center" action="" method="post">
-                    <div class="style_input">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" />
-                    </div>
-                    <div class="style_input">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" />
-                    </div>
-                    <div class="style_input">
-                        <label for="phone_number">Phone number</label>
-                        <input type="text" name="phone_number" />
-                    </div>
-                    <div class="style_input">
-                        <label for="password">Password</label>
-                        <input type="text" name="password" />
-                    </div>
-                    <div class="style_input">
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+				<form class="signIn text-center" action="" method="post">
+					<div class="style_input">
+						<label for="name">Name</label>
+						<input type="text" name="name" />
+					</div>
+					<div class="style_input">
+						<label for="email">Email</label>
+						<input type="text" name="email" />
+					</div>
+					<div class="style_input">
+						<label for="phone_number">Phone number</label>
+						<input type="text" name="phone_number" />
+					</div>
+					<div class="style_input">
+						<label for="password">Password</label>
+						<input type="text" name="password" />
+					</div>
+					<div class="style_input">
+						<button type="submit">Submit</button>
+					</div>
+				</form>
 
-                <form class="logIn text-center" action="" method="post">      
-                    <div class="style_input">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" />
-                    </div>
-                    <div class="style_input">
-                        <label for="password">Password</label>
-                        <input type="text" name="password" />
-                    </div>
-                    <div class="style_input">
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+				<form class="logIn text-center" action="" method="post">      
+					<div class="style_input">
+						<label for="name">Name</label>
+						<input type="text" name="name" />
+					</div>
+					<div class="style_input">
+						<label for="password">Password</label>
+						<input type="text" name="password" />
+					</div>
+					<div class="style_input">
+						<button type="submit">Submit</button>
+					</div>
+				</form>
 
 				<div class="take_picture vertical-center">
 					<p>
@@ -116,54 +113,34 @@
 
 				</div>
 
-                <div class="connected">
-                    <p>Vous êtes bien connecté</p>
-                    <div class="carte">
-                        <div class="carte_top">Carte de dresseur</div>
-                        <ul class="carte_left">
-                            <li class="carte_name">
-                                <div class="carte_name_title">Name</div>
-                                <div class="carte_name_name"></div> 
-                            </li>
-                            <li class="carte_pokedex">
-                                <div class="carte_pokedex_title">Pokédex</div>
-                                <div class="carte_pokedex_name"></div> 
-                            </li>
-                        </ul>
-                        <div class="carte_right">
-                            <img src="" width="126" alt="">
-                        </div>
-                        <div class="carte_bottom">
-                            <p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+				<div class="connected">
+					<p>Vous êtes bien connecté</p>
+					<div class="carte">
+						<div class="carte_top">Carte de dresseur</div>
+						<ul class="carte_left">
+							<li class="carte_name">
+								<div class="carte_name_title">Name</div>
+								<div class="carte_name_name"></div> 
+							</li>
+							<li class="carte_pokedex">
+								<div class="carte_pokedex_title">Pokédex</div>
+								<div class="carte_pokedex_name"></div> 
+							</li>
+						</ul>
+						<div class="carte_right">
+							<img src="" width="126" alt="">
+						</div>
+						<div class="carte_bottom">
+							<p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        </div>                  
+		</div>                  
 
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
-
-<script>
-$(document).ready(function(){ 
-	var touch   = $('#resp-menu');
-	var menu    = $('.menu');
- 
-	$(touch).on('click', function(e) {
-		e.preventDefault();
-		menu.slideToggle();
-	});
-	
-	$(window).resize(function(){
-		var w = $(window).width();
-		if(w > 767 && menu.is(':hidden')) {
-			menu.removeAttr('style');
-		}
-	});
-	
-});
-</script>
 	</body>
 </html>

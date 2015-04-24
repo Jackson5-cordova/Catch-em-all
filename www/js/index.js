@@ -47,6 +47,7 @@ app.initialize();
 function init(){ // Tout ce qui est lancé au chargement de la page
 	signin_login();
 	vertical_center();
+	menu();
 	resize();
 	$(window).resize(function(){
 		resize();
@@ -294,6 +295,12 @@ function vertical_center(){
 	});
 }
 
+
+function menu(){
+	$('.menu-toggle').click(function(){
+		$('.menu').slideToggle();
+	});
+}
 
 
 

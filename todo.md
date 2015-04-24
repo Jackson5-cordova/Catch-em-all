@@ -11,3 +11,12 @@
 ##Readme.md
 * Pitch de l'app
 * Liste des blocages
+
+
+# Jour 3
+* Status bar
+* Storage
+* Connection
+* Device Orientation (Compass)
+
+## Heure de passage : 16:40
