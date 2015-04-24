@@ -1,9 +1,17 @@
-Ecrans de l'application
+Pitch de l'application : 
 
-* Arrivée sur l'application  
-* On regarde si l'utilisateur a déjà un compte sur l'application grâce à son numéro de téléphone
-* Si oui, il peut se mettre à jouer directement
-* Si non, on procède à des étapes de son inscription sur l'appli
-    * Il va devoir se prendre en photo pour faire sa carte de dresseur
-    * Renseignement de l'email, et choix d'un mot de passe
-    * Connexion à l'appli pour jouer
+Catch'em all vous permet de réaliser vos rêves de dresseur pokémon. 
+Grâce à la géolocalisation, recherchez et capturez les petits monstres se cachant autour de vous et affrontez vos amis !
+
+
+Blocages : 
+
+* Recherche d'un plugin statusbar
+* Impossibilité de build sur android => Installation de ANT
+* Emulation android longue
+* Le changement de nom de l'application ne fonctionnais pas. => Présence d'apostrophe
+* Erreur empêchant d'ouvrir l'émulateur => supprimer et re-ajouter tous les plugins
+* Le plugin contact n'affichait pas les contact matchant avec la base de données par cause de mauvais retour de fonction.
+* Impossible de build => suppression du dossier platform, ios.json et android.json, et re-création des platforms
+
+ Disponible sur IOS et Android.
