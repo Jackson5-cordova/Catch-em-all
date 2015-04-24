@@ -77,6 +77,31 @@
                     ]
                 }
             },
+<<<<<<< HEAD
+=======
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"ios-package\" value=\"CDVContacts\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+>>>>>>> 49848aaebfbdb078bf564c8685e9386fec9858cc
             "*-Info.plist": {
                 "parents": {
                     "NSLocationWhenInUseUsageDescription": [
@@ -96,10 +121,10 @@
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
-        "org.apache.cordova.contacts": {
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
-        "org.apache.cordova.geolocation": {
+        "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         }
     },

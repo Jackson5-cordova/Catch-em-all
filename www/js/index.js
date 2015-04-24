@@ -38,6 +38,7 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
+		console.log(navigator.contacts);
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -79,7 +80,6 @@ function menu(){
 }
 
 function contact(){
-
 	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
 
 	setTimeout(function() {
