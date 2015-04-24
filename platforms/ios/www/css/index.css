@@ -173,12 +173,13 @@ nav {
 .menu-toggle {
   display:block;
   width: 100%;
-  padding: 20px 15px;
+  padding: 0 15px;
   background: #E95546;
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
   cursor:pointer;
+  line-height:61px;
 }
 
 .menu-toggle:hover {

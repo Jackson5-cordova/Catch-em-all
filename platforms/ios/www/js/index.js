@@ -35,6 +35,7 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
+		console.log(navigator.contacts);
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -77,37 +78,38 @@ function menu(){
 }
 
 function contact(){
-	var contacts_done = 0;
-	if(contacts_done === 0) {
-		$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Waiting...</div>');
-		setTimeout(function() {
-			var data;
-			data = contacts();
-			$.post(url_access+'functions.php',{data: data, what_function:'getContacts'},function(data) {
-				if(data != 'KO') {
-					$('.loading').remove();
-					var data = JSON.parse(data);
-					if(data.length != 0) {
-						for (var i = 0; i < data.length; i++) {
-							$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-						}
-					} else {
-						$('.div_contact').append('<p>Aucun contact trouvé</p>');
-					}						
-					contacts_done = 1;
-				} else {
-					$('.sign_log_in').show();
-				}
-			});
-		}, 2000);
-	}
+	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Patientez...</div>');
+
+	function onSuccess(contacts) {
+		$('.loading').remove();
+		console.log(contacts.length + ' contacts trouvés.');
+	 	console.log(contacts[0]);
+	 	for(i = 0;i < contacts.length; i++){
+			// for(j = 0;j < contacts[i].phoneNumbers.length; j++){
+			// 	$('.div_contact').append(contacts[i].phoneNumbers[j].value);
+			// }
+		}
+
+		// all_contacts[0] = "0633086883";
+		// return all_contacts;
+	};
+	function onError(contactError) {
+	    console.log('Erreur Contacts');
+	};
+	var options      = new ContactFindOptions();
+	options.filter   = "";
+	options.multiple = true;
+	options.desiredFields = [navigator.contacts.fieldType.id];
+	var filter = ["displayName", "name"];
+	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+	navigator.contacts.find(filter, onSuccess, onError, options);
 }
 
 function news(){
 	var news_done = 0,
 		url_access = "http://rabillon.fr/";
 	if(news_done === 0) {
-		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Waiting...</div>');
+		$('.div_news').html('<h2>News</h2>').append('<div class="loading">Patientez...</div>');
 		setTimeout(function() {
 			$.post(url_access+'functions.php',{what_function:'news'},function(data) {
 				if(data != 'KO') {
@@ -325,39 +327,4 @@ function getPhoto(source) {
 }
 function onFailPhoto(message) {
 	alert('Failed because: ' + message);
-}
-
-
-function contacts(){
-	function onSuccess(contacts) {
-
-		alert('Found ' + contacts.length + ' contacts.');
-
-		var all_contacts = {};
-
-	 	//for(j = 0;j < contacts.length; j++){
-		// 	for(i = 0;i < contacts[j].phoneNumbers.length; i++){
-		// 		all_contacts[i] = contacts[j].phoneNumbers[i].value;
-		// 		all_contacts[i] = '0633086883';
-		// 		return all_contacts;
-		// 	}
-		// }
-
-		all_contacts[0] = "0633086883";
-		return all_contacts;
-	};
-	function onError(contactError) {
-	    alert('onError!');
-	};
-
-	var options      = new ContactFindOptions();
-	options.filter   = "";
-	options.multiple = true;
-	options.desiredFields = [navigator.contacts.fieldType.id];
-	var filter = ["displayName", "name"];
-	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
-
-
-
-	navigator.contacts.find(filter, onSuccess, onError, options);
 }
