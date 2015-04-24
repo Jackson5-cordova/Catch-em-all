@@ -40,6 +40,8 @@ var app = {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
 		check_con();
+		// window.analytics.startTrackerWithId('UA-62250325-1');
+		// window.analytics.trackView("Page d'accueil");
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
@@ -156,8 +158,9 @@ function news(){
 
 function geolocalisation(){
 	$('.div_battle').hide();
-
+	$('.div_geoloc').html('<h2>Geolocalisation</h2>').append('<div class="loading">Chargement...</div>');
 	var onSuccess = function(position) {
+		$('.loading').remove();
 		$('.div_geoloc').append('<h3>Votre localisation a été trouvée !</h3>');
 		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
 		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p><br /><br /><br />');
