@@ -1,4 +1,4 @@
-Speach de l'application : 
+Speech de l'application : 
 
 Catch'em all vous permet de réaliser vos rêves de dresseur pokémon. 
 Grâce à la géolocalisation, recherchez et capturez les petits monstres se cachant autour de vous et affrontez vos amis !
@@ -13,5 +13,6 @@ Blocages :
 * Erreur empêchant d'ouvrir l'émulateur => supprimer et re-ajouter tous les plugins
 * Le plugin contact n'affichait pas les contact matchant avec la base de données par cause de mauvais retour de fonction.
 * Impossible de build => suppression du dossier platform, ios.json et android.json, et re-création des platforms
+* Problème de storage => Submit reload la page avant le INSERT dans la BDD => Button html, plus de problème
 
  Disponible sur IOS et Android.

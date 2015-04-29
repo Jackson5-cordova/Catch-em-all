@@ -157,14 +157,30 @@ function news(){
 }
 
 function geolocalisation(){
+	$('.div_battle').hide();
 	$('.div_geoloc').html('<h2>Geolocalisation</h2>').append('<div class="loading">Chargement...</div>');
 	var onSuccess = function(position) {
 		$('.loading').remove();
 		$('.div_geoloc').append('<h3>Votre localisation a été trouvée !</h3>');
 		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
 		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p><br /><br /><br />');
-		$('.div_geoloc').append('<p>Il n\'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !</p>');
 		$('.div_geoloc').append('<a href="geoloc.html" class="button">Me géolocaliser une nouvelle fois</a>');
+
+		if(
+			position.coords.latitude > 30 
+			&& position.coords.latitude < 55
+			&& position.coords.longitude > 0 
+			&& position.coords.longitude < 20
+		) 
+
+		{
+			$('.div_geoloc').append('<p>Il y a un Pokémon dans votre zone !</p>');
+			$('.div_geoloc').append('<p><img class="repered" src="img/pokemons/pikachu.png" width="300" /></p>');
+			$('.div_geoloc').append('<p><button class="show_battle">Affronter le Pokémon</button></p>');
+		} else {
+			$('.div_geoloc').append('<p>Il n\'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !</p>');
+		}
+
 	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
 	    //       'Longitude: '         + position.coords.longitude         + '\n' +
 	    //       'Altitude: '          + position.coords.altitude          + '\n' +
@@ -178,6 +194,22 @@ function geolocalisation(){
 	    //alert('code: '    + error.code    + '\n' +
 	}
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+	$(document).on('click', '.show_battle', function() {
+		$('.div_geoloc').hide();
+		$('.div_battle .pokemon').append('<img src="'+$('.repered').attr('src')+'" width="300"/>');
+		$('.div_battle').append('<p style="margin-top: 300px;"><button>Attraper le Pokémon</button></p>');
+		$('.div_battle').show();
+		
+		setTimeout(function() {
+			battle();
+		}, 1000);
+		
+	})
+}
+
+function battle() {
+	$('.div_battle .pokemon').append('<p>Pikachu attaque éclair !</p>');
 }
 
 function check_con(){
