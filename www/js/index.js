@@ -39,11 +39,8 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
-<<<<<<< HEAD
 		check_con();
 		startWatch();
-=======
->>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
 	},
@@ -416,7 +413,7 @@ function home(){
 
 }
 
-var table_name = 'OK';
+var table_name = 'rt';
 
 var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 
@@ -477,7 +474,7 @@ function vertical_center(){
 
 
 
-<<<<<<< HEAD
+
 function checkConnection() {
     var networkState = navigator.connection.type;
     return true;
@@ -508,8 +505,7 @@ function startWatch() {
         alert('Compass error: ' + compassError.code);
     }
 
-=======
->>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
+
 /* Camera
 -------------------- */
 var pictureSource; // picture source
@@ -526,7 +522,7 @@ function onPhotoDataSuccess(imageURI) {
 	cameraImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
-	//alert(imageURI);
+	alert(imageURI);
 }
 function onPhotoURISuccess(imageURI) {
 	//console.log(imageURI);
@@ -535,7 +531,7 @@ function onPhotoURISuccess(imageURI) {
 	galleryImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
-	//alert(imageURI);
+	alert(imageURI);
 }
 function capturePhoto() {
 	navigator.camera.getPicture(onPhotoDataSuccess, onFailPhoto, { quality : 100,
