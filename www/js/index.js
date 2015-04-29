@@ -312,6 +312,10 @@ function battle() {
 
 }
 
+var all_results;
+
+var user;
+
 function home(){
 	$('.connected, .take_picture, .sign_log_in').hide();
 	var contacts_done = 0;
@@ -320,30 +324,40 @@ function home(){
 	/*
 	*	LES VARIABLES connected et PHONE_NUMBER SONT A RECUPERER DEPUIS LE LOCALSTORAGE DE L UTILISATEUR
 	*/
+	var connected;
+	var phone_number;
 
-	var connected = true,
-		phone_number = '0633086883';
+	// On vérifie si il y a du stockage sur le téléphone
+	getStorage(function() {
 
-	if(connected == true) {
+		console.log(user);
 
-		$.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+		if(user == undefined) {
+			connected = false;
+		} else {
+			connected = true;
+		}
 
-		if(data != 'KO') {
-			var data = JSON.parse(data);
-				$('.carte_name_name').text(data.name);
-				$('.carte_pokedex_name').text(data.pokedex);
-				$('.carte_right img').attr('src', data.picture);
+		// Si l'utilisateur possède déjà des datas, on lui donne simplement ses datas
+		if(connected == true) {
+
+			getStorage(function() {
+
+				$('.carte_name_name').text(user.name);
+				$('.carte_pokedex_name').text(user.pokedex);
+				$('.carte_right img').attr('src', user.picture);
 				$('.connected').show();
-			} else {
-				alert('error');
-			}
+					
+			});
+			
+		// Sinon, on le fait s'inscrire
+		} else {
+			$('.sign_log_in').show();
+		}
+	});
+	
 
-		});
-
-	} else {
-		$('.sign_log_in').show();
-	}
-
+	// L'utilisateur s'inscrit pour la seule et unique fois
 	$('.signIn').on('submit', function(e) {
 
 		e.preventDefault();
@@ -355,30 +369,39 @@ function home(){
 		data['sign_password'] = $(this).find('input[name=password]').val();
 		data['sign_picture'] = "img/avatar.jpg";
 
-		$.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
+		// On SET les informations dans le storage
+		setStorage(data, function() {
 
-			if(data != 'KO') {
-				var data = JSON.parse(data);
-				console.log(data);
+			$.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
 
-				$('.carte_name_name').text(data.name);
+				if(data != 'KO') {
+					var data = JSON.parse(data);
+					//console.log(data);
 
-				if(data.pokedex != null) {
-					$('.carte_pokedex_name').text(data.pokedex);
+					$('.carte_name_name').text(data.name);
+
+					if(data.pokedex != null) {
+						$('.carte_pokedex_name').text(data.pokedex);
+					} else {
+						$('.carte_pokedex_name').text('0');
+					}
+					$('.carte_right img').attr('src', data.picture);
+
+					// L'utilisateur arrive pour la première fois sur l'application, on le propose de se prendre en photo
+					$('.take_picture').show();
+
+					getStorage(function() {
+
+					});
+
+					$('.signIn').hide();
 				} else {
-					$('.carte_pokedex_name').text('0');
+					$('.sign_log_in').show();
 				}
-				console.log('picture', data.picture);
-				$('.carte_right img').attr('src', data.picture);
-
-				// L'utilisateur arrive pour la première fois sur l'application, on le propose de se prendre en photo
-				$('.take_picture').show();
-
-				$('.signIn').hide();
-			} else {
-				$('.sign_log_in').show();
-			}
+			});
 		});
+
+		
 	});
 
 	$('.pass_step').on('click', function() {
@@ -387,6 +410,56 @@ function home(){
 	});
 
 }
+
+var table_name = 'OK';
+
+var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
+
+function getStorage(callback){
+
+	// Ouverture de la BDD
+	db.transaction(function(tx){
+
+		// Création de la TABLE
+		tx.executeSql("CREATE TABLE IF NOT EXISTS "+table_name+"(id INTEGER PRIMARY KEY, name, email, phone_number, password, picture, pokedex)");
+		tx.executeSql
+		("SELECT * FROM "+table_name+"", [], 
+		    function(tx, results) {
+		        if(results.rows) {
+		            for (var i = 0; i < results.rows.length; i++) {
+		            	console.log(results.rows.item(i));
+		            }
+		            if(results.rows.length != 0) {
+		            	console.log(results.rows.item(0));
+						user = results.rows.item(0);
+		            } else {
+		            	console.log(results.rows.length);
+		            	user = undefined;
+		            }
+		            
+		            callback();
+		        }
+		    }
+		);
+	});
+}
+
+var zero = 0;
+function setStorage(data, callback) {
+
+	db.transaction(function(tx){
+		tx.executeSql("INSERT INTO "+table_name+" (name, email, phone_number, password, picture, pokedex) VALUES (?,?,?,?,?,?)", [data['sign_name'], data['sign_email'], data['sign_phone_number'], data['sign_password'], data['sign_picture'], zero]
+			, function(t, data) {
+				console.log(t);
+				console.log(data);
+			}
+		);
+	});
+	callback();
+}
+
+
+
 
 function vertical_center(){
 	$('.vertical-center').each(function(){
@@ -449,11 +522,9 @@ function onFailPhoto(message) {
 }
 
 function storage(){
-	// Ouverture de la BDD
 	var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 	db.transaction(function(tx){
 
-		// Création de la TABLE
 		tx.executeSql('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
 		tx.executeSql
 		("SELECT * FROM USERS", [], 
@@ -477,6 +548,6 @@ function storage(){
 		db.transaction(function(tx){
 			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input], function(t, data){document.location.reload(true);	});
 		});
-		
 	});
+		
 }

@@ -26,8 +26,6 @@
 				<li><a href="contact.html">CONTACTS</a></li>
 				<li><a href="news.html">NEWS</a></li>
 				<li><a href="geoloc.html">GEOLOCALISATION</a></li>
-				<li><a href="storage.html">STOCKAGE</a></li>
-				<li><a href="picture.html">PHOTO</a></li>
 			</ul>
 		</nav>
 
@@ -72,6 +70,23 @@
 					</form>
 
 				</div>
+
+                <div class="take_picture">
+                    <p>
+                        Pour terminer votre inscription, nous vous proposons de vous prendre en photo pour terminer votre carte de dresseur !
+                        <br /><br />
+                        Cliquez sur le bouton ci-dessous pour prendre une photo !
+                    </p>
+
+                    <button onclick="capturePhoto();">Capture Photo</button><br>
+                    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+                    <img id="image_taken" src="" style="display:none;width:100%;">
+                    
+                    <br /><br /><br /><br />
+                    
+                    <button id="image-submit" style="display:none" onclick="savePhoto();">Sauvegarder</button><button class="pass_step">Passer cette étape</button>
+
+                </div>
 
 				<div class="connected">
 					<p> 
