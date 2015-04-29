@@ -188,6 +188,7 @@ function news(){
 						$('.div_news').append('<p>'+data[the_data]+'</p>');
 					}
 					news_done = 1;
+					beacon();
 				} else {
 					$('.sign_log_in').show();
 				}
@@ -554,33 +555,47 @@ function onFailPhoto(message) {
 	alert('Failed because: ' + message);
 }
 
-function storage(){
-	var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
-	db.transaction(function(tx){
+// function beacon() {
+// 	var delegate = new cordova.plugins.locationManager.Delegate();
 
-		tx.executeSql('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
-		tx.executeSql
-		("SELECT * FROM USERS", [], 
-		    function(tx, results) {
-		        if(results.rows) {
-		            for (var i = 0; i < results.rows.length; i++) {
-		            	if(i > 0){
-		                	$('.div_storage').append("<br/>User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
-		            	}else{
-		                	$('.div_storage').append("User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
-		                }
-		            }
-		        }
-		    }
-		);
-	});
+// 	delegate.didDetermineStateForRegion = function(pluginResult) {
 
-	$('.formulaire > button').click(function(){
-		input = $( "input:first" ).val();
-		//alert(input);
-		db.transaction(function(tx){
-			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input], function(t, data){document.location.reload(true);	});
-		});
-	});
+// 		// logToDom('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult));
+
+// 		cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult));
+// 	};
+
+// 	delegate.didStartMonitoringForRegion = function(pluginResult) {
+
+// 		// logToDom('didStartMonitoringForRegion:' + JSON.stringify(pluginResult));
+// 	};
+
+// 	delegate.didRangeBeaconsInRegion = function(pluginResult) {
+// 		// logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+
+// 		var beaconsFound = pluginResult.beacons;
+
+// 		if ( beaconsFound && beaconsFound.length > 0 ) {
+// 			alert("Votre beacon est proche !");
+// 			// alert('true');
+// 		  	// $broadcast('beacon', true);
+// 		} else if (beaconsFound && beaconsFound.length <= 0) {
+// 		  	// $broadcast('beacon', false);
+// 		  	// alert('false');
+// 		  	alert("Votre beacon n'est pas reconnu.");
+// 		}
 		
+// 	};
+
+// 	var uuid = '17586a9d-1fd4-4b05-8a50-ac08b6fdc91c';
+// 	var id = 'iBKS';
+// 	var minor = 1;
+// 	var major = 1;
+// 	var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(id, uuid, major, minor);
+
+
+// 	cordova.plugins.locationManager.setDelegate(delegate);
+// 	cordova.plugins.locationManager.requestWhenInUseAuthorization();
+// 	cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion)
+// 		.fail(console.error).done();
 }
