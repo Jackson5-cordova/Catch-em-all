@@ -14,5 +14,5 @@ Blocages :
 * Le plugin contact n'affichait pas les contact matchant avec la base de données par cause de mauvais retour de fonction.
 * Impossible de build => suppression du dossier platform, ios.json et android.json, et re-création des platforms
 * Problème de storage => Submit reload la page avant le INSERT dans la BDD => Button html, plus de problème
-
+* Run dans un android device => Installation de la dernière version d'adb et modification du script d'installation
  Disponible sur IOS et Android.
