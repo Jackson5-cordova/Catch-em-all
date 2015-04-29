@@ -39,8 +39,11 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
+<<<<<<< HEAD
 		check_con();
 		startWatch();
+=======
+>>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
 	},
@@ -71,40 +74,70 @@ var connected = false;
 function menu(){
 	$('.menu-toggle').click(function(){
 		$('.menu').slideToggle();
+		return false;
 	});
 }
+
+function checkConnection() {
+	var networkState = navigator.connection.type;
+	var states = {};
+	states[navigator.connection.UNKNOWN]  = 'Connexion inconnue';
+	states[navigator.connection.ETHERNET] = 'Connexion ethernet';
+	states[navigator.connection.WIFI]     = 'Connexion WiFi';
+	states[navigator.connection.CELL_2G]  = 'Connexion 2G';
+	states[navigator.connection.CELL_3G]  = 'Connexion 3G';
+	states[navigator.connection.CELL_4G]  = 'Connexion 4G';
+	states[navigator.connection.CELL]     = 'Connexion générique';
+	states[navigator.connection.NONE]     = 'Pas de connexion';
+
+	alert(states[networkState]);
+}
+
+//checkConnection();
+
+
 var numeros;
+
 function contact(){
-	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
 
-	setTimeout(function() {
-		contacts(function() {
-			$.post(url_access+'functions.php',{data: numeros, what_function:'getContacts'},function(data) {
-				console.log(data);
+	$('.search_contacts').on('click', function() {
 
-				if(data != 'KO') {
-					$('.loading').remove();
-					var data = JSON.parse(data);
+		var thaat = $(this);
 
-					if(data.length != 0) {
-						$('.div_contact').append('<h3>Des contacts ont été trouvés !</h3>');
-						$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
-						for (var i = 0; i < data.length; i++) {
-							$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-							// $('.div_contact').append('<p><button>Ajouter en ami</button></p>');
+		$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
+
+		setTimeout(function() {
+			contacts(function() {
+				$.post(url_access+'functions.php',{data: numeros, what_function:'getContacts'},function(data) {
+					console.log(data);
+
+					if(data != 'KO') {
+						$('.loading').remove();
+						var data = JSON.parse(data);
+
+						if(data.length != 0) {
+							$('.div_contact').append('<h3>Des contacts ont été trouvés !</h3>');
+							$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
+							for (var i = 0; i < data.length; i++) {
+								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+								// $('.div_contact').append('<p><button>Ajouter en ami</button></p>');
+							}
+							thaat.remove();
+						} else {
+							$('.div_contact').append('<p>Aucun contact trouvé</p>');
 						}
+
 					} else {
-						$('.div_contact').append('<p>Aucun contact trouvé</p>');
+						alert('erreur');
 					}
-
-				} else {
-					alert('erreur');
-				}
+				});
 			});
-		});
 
-		
-	}, 2000);
+			
+		}, 2000);
+	});
+
+	
 }
 
 function contacts(callback){
@@ -122,17 +155,27 @@ function contacts(callback){
 		numeros = all_contacts;
 		callback();
 	};
+
 	function onError(contactError) {
 	    alert('onError!');
 	};
-	var options      = new ContactFindOptions();
-	options.filter   = "";
-	options.multiple = true;
-	options.desiredFields = [navigator.contacts.fieldType.phoneNumbers];
-	var filter = ["displayName", "name"];
-	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+	
+	if($(window).width() < 1200) {
+		var options = new ContactFindOptions();
+		options.filter   = "";
+		options.multiple = true;
+		options.desiredFields = [navigator.contacts.fieldType.phoneNumbers];
+		var filter = ["displayName", "name"];
+		//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
 
-	navigator.contacts.find(filter, onSuccess, onError, options);
+		navigator.contacts.find(filter, onSuccess, onError, options);
+	} else {
+		var all_contacts = {};
+		all_contacts[0] = 'ooo';
+		numeros =  all_contacts;
+		callback();
+	}
+	
 }
 
 function news(){
@@ -157,72 +200,126 @@ function news(){
 	}
 }
 
+var pokemon_name = '';
+
 function geolocalisation(){
 	$('.div_battle').hide();
 	$('.div_geoloc').html('<h2>Geolocalisation</h2>').append('<div class="loading">Chargement...</div>');
-	var onSuccess = function(position) {
+
+	var successPosition = function(position) {
 		$('.loading').remove();
+		console.log(position.coords.latitude + position.timestamp);
 		$('.div_geoloc').append('<h3>Votre localisation a été trouvée !</h3>');
 		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
 		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p><br /><br /><br />');
 		$('.div_geoloc').append('<a href="geoloc.html" class="button">Me géolocaliser une nouvelle fois</a>');
 
-		if(
-			position.coords.latitude > 30 
-			&& position.coords.latitude < 55
-			&& position.coords.longitude > 0 
-			&& position.coords.longitude < 20
-		) 
+		if(position.coords.latitude > 48.85) {
 
-		{
-			$('.div_geoloc').append('<p>Il y a un Pokémon dans votre zone !</p>');
-			$('.div_geoloc').append('<p><img class="repered" src="img/pokemons/pikachu.png" width="300" /></p>');
-			$('.div_geoloc').append('<p><button class="show_battle">Affronter le Pokémon</button></p>');
+			pokemon_name = 'pikachu';
+
+		} else if(position.coords.latitude < 48.85) {
+
+			pokemon_name = "carapuce";
+
 		} else {
 			$('.div_geoloc').append('<p>Il n\'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !</p>');
 		}
 
-	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
-	    //       'Longitude: '         + position.coords.longitude         + '\n' +
-	    //       'Altitude: '          + position.coords.altitude          + '\n' +
-	    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
-	    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-	    //       'Heading: '           + position.coords.heading           + '\n' +
-	    //       'Speed: '             + position.coords.speed             + '\n' +
-	    //       'Timestamp: '         + position.timestamp                + '\n');
+		if(pokemon_name != '') {
+			$('.div_geoloc').append('<p>Il y a un Pokémon dans votre zone !</p>');
+			$('.div_geoloc').append('<p><img class="repered" src="img/pokemons/'+pokemon_name+'.png" width="300" /></p>');
+			$('.div_geoloc').append('<p><button class="show_battle">Affronter le Pokémon</button></p>');
+		}
+		
 	};
-	function onError(error) {
-	    //alert('code: '    + error.code    + '\n' +
+
+	var erreurPosition = function(error) {
+
+	    var info = "Erreur lors de la géolocalisation : ";
+	    switch(error.code) {
+	    case error.TIMEOUT:
+	    	info += "Timeout !";
+	    break;
+	    case error.PERMISSION_DENIED:
+	    info += "Vous n’avez pas donné la permission";
+	    break;
+	    case error.POSITION_UNAVAILABLE:
+	    	info += "La position n’a pu être déterminée";
+	    break;
+	    case error.UNKNOWN_ERROR:
+	    	info += "Erreur inconnue";
+	    break;
+	    }
+
+	    alert(info);
 	}
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+	navigator.geolocation.getCurrentPosition(successPosition, erreurPosition, {maximumAge:0,enableHighAccuracy:true});
+
+
 
 	$(document).on('click', '.show_battle', function() {
 		$('.div_geoloc').hide();
 		$('.div_battle .pokemon').append('<img src="'+$('.repered').attr('src')+'" width="300"/>');
-		$('.div_battle').append('<p style="margin-top: 300px;"><button>Attraper le Pokémon</button></p>');
+		$('.div_battle').append('<p style="margin-top: 300px;"><button class="catch">Attraper le Pokémon</button></p>');
+		$('.div_battle .pokemon').append('<p>Chances d\'attraper le Pokémon : <span class="luck">20</span>/100</p>');
 		$('.div_battle').show();
 		
 		setTimeout(function() {
 			battle();
 		}, 1000);
 		
-	})
+	});
 }
+
+function rand(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+$(document).on('click', '.catch', function() {
+
+	if(battle_running === 0) {
+
+		$('.ball').addClass('animate_ball');
+
+		setTimeout(function() {
+			$('.ball').removeClass('animate_ball');
+			$('.pokemon').remove();
+			$('.catch').remove();
+			$('.div_battle').append('<p>Vous avez attrapé le pokémon !!!</p>');
+			$('.div_battle').append('<p><a href="geoloc.html" class="button">Essayer encore une fois</a></p>');
+		}, 2000);
+	}
+});
+
+var battle_running = 0;
 
 function battle() {
-	$('.div_battle .pokemon').append('<p>Pikachu attaque éclair !</p>');
-}
 
-function check_con(){
-	var check_connection = checkConnection();
+	battle_running = 1;
 
-	if(check_connection) {
-		$('.div_home').append('Vous avez une connexion internet !');
-	} else {
-		$('.div_home').append('Vous n\'avez pas de connexion internet !');
+	var random = rand(1,3);
+	var luck = $('.luck');
+
+	if(random === 1) {
+		$('.div_battle .pokemon').append('<p>Pikachu vous attaque ! Vous perdez 10 points de chance !</p>');
+		luck.text(parseInt(luck.text()) - 10);
+	} else if(random === 2) {
+		$('.div_battle .pokemon').append('<p>Le pokémon se calme ! Vous gagnez 10 points de chance ! </p>');
+		luck.text(parseInt(luck.text()) + 10);
+	} else if(random === 3) {
+		$('.div_battle .pokemon').append('<p>Le Pokémon vous adore !! Vous gagnez 20 points de chance !!</p>');
+		luck.text(parseInt(luck.text()) + 20);
 	}
+
+	battle_running = 0;
+
 }
 
+var all_results;
+
+var user;
 
 function home(){
 	$('.connected, .take_picture, .sign_log_in').hide();
@@ -232,30 +329,40 @@ function home(){
 	/*
 	*	LES VARIABLES connected et PHONE_NUMBER SONT A RECUPERER DEPUIS LE LOCALSTORAGE DE L UTILISATEUR
 	*/
+	var connected;
+	var phone_number;
 
-	var connected = true,
-		phone_number = '0633086883';
+	// On vérifie si il y a du stockage sur le téléphone
+	getStorage(function() {
 
-	if(connected == true) {
+		console.log(user);
 
-		$.post(url_access+'functions.php',{phone_number:phone_number, what_function:'authentificate'},function(data) {
+		if(user == undefined) {
+			connected = false;
+		} else {
+			connected = true;
+		}
 
-		if(data != 'KO') {
-			var data = JSON.parse(data);
-				$('.carte_name_name').text(data.name);
-				$('.carte_pokedex_name').text(data.pokedex);
-				$('.carte_right img').attr('src', data.picture);
+		// Si l'utilisateur possède déjà des datas, on lui donne simplement ses datas
+		if(connected == true) {
+
+			getStorage(function() {
+
+				$('.carte_name_name').text(user.name);
+				$('.carte_pokedex_name').text(user.pokedex);
+				$('.carte_right img').attr('src', user.picture);
 				$('.connected').show();
-			} else {
-				alert('error');
-			}
+					
+			});
+			
+		// Sinon, on le fait s'inscrire
+		} else {
+			$('.sign_log_in').show();
+		}
+	});
+	
 
-		});
-
-	} else {
-		$('.sign_log_in').show();
-	}
-
+	// L'utilisateur s'inscrit pour la seule et unique fois
 	$('.signIn').on('submit', function(e) {
 
 		e.preventDefault();
@@ -267,30 +374,39 @@ function home(){
 		data['sign_password'] = $(this).find('input[name=password]').val();
 		data['sign_picture'] = "img/avatar.jpg";
 
-		$.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
+		// On SET les informations dans le storage
+		setStorage(data, function() {
 
-			if(data != 'KO') {
-				var data = JSON.parse(data);
-				console.log(data);
+			$.post(url_access+'functions.php',{data:data, what_function:'sign_in'},function(data) {
 
-				$('.carte_name_name').text(data.name);
+				if(data != 'KO') {
+					var data = JSON.parse(data);
+					//console.log(data);
 
-				if(data.pokedex != null) {
-					$('.carte_pokedex_name').text(data.pokedex);
+					$('.carte_name_name').text(data.name);
+
+					if(data.pokedex != null) {
+						$('.carte_pokedex_name').text(data.pokedex);
+					} else {
+						$('.carte_pokedex_name').text('0');
+					}
+					$('.carte_right img').attr('src', data.picture);
+
+					// L'utilisateur arrive pour la première fois sur l'application, on le propose de se prendre en photo
+					$('.take_picture').show();
+
+					getStorage(function() {
+
+					});
+
+					$('.signIn').hide();
 				} else {
-					$('.carte_pokedex_name').text('0');
+					$('.sign_log_in').show();
 				}
-				console.log('picture', data.picture);
-				$('.carte_right img').attr('src', data.picture);
-
-				// L'utilisateur arrive pour la première fois sur l'application, on le propose de se prendre en photo
-				$('.take_picture').show();
-
-				$('.signIn').hide();
-			} else {
-				$('.sign_log_in').show();
-			}
+			});
 		});
+
+		
 	});
 
 	$('.pass_step').on('click', function() {
@@ -299,6 +415,56 @@ function home(){
 	});
 
 }
+
+var table_name = 'OK';
+
+var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
+
+function getStorage(callback){
+
+	// Ouverture de la BDD
+	db.transaction(function(tx){
+
+		// Création de la TABLE
+		tx.executeSql("CREATE TABLE IF NOT EXISTS "+table_name+"(id INTEGER PRIMARY KEY, name, email, phone_number, password, picture, pokedex)");
+		tx.executeSql
+		("SELECT * FROM "+table_name+"", [], 
+		    function(tx, results) {
+		        if(results.rows) {
+		            for (var i = 0; i < results.rows.length; i++) {
+		            	console.log(results.rows.item(i));
+		            }
+		            if(results.rows.length != 0) {
+		            	console.log(results.rows.item(0));
+						user = results.rows.item(0);
+		            } else {
+		            	console.log(results.rows.length);
+		            	user = undefined;
+		            }
+		            
+		            callback();
+		        }
+		    }
+		);
+	});
+}
+
+var zero = 0;
+function setStorage(data, callback) {
+
+	db.transaction(function(tx){
+		tx.executeSql("INSERT INTO "+table_name+" (name, email, phone_number, password, picture, pokedex) VALUES (?,?,?,?,?,?)", [data['sign_name'], data['sign_email'], data['sign_phone_number'], data['sign_password'], data['sign_picture'], zero]
+			, function(t, data) {
+				console.log(t);
+				console.log(data);
+			}
+		);
+	});
+	callback();
+}
+
+
+
 
 function vertical_center(){
 	$('.vertical-center').each(function(){
@@ -311,6 +477,7 @@ function vertical_center(){
 
 
 
+<<<<<<< HEAD
 function checkConnection() {
     var networkState = navigator.connection.type;
     return true;
@@ -341,6 +508,8 @@ function startWatch() {
         alert('Compass error: ' + compassError.code);
     }
 
+=======
+>>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 /* Camera
 -------------------- */
 var pictureSource; // picture source
@@ -417,6 +586,6 @@ function storage(){
 		db.transaction(function(tx){
 			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input], function(t, data){document.location.reload(true);	});
 		});
-		
 	});
+		
 }

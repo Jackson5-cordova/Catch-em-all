@@ -53,6 +53,34 @@ body {
     margin: 0 auto;
 }
 
+.ball {
+  display: none;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.ball.animate_ball {
+  display: block;
+  -webkit-animation-name: animate_ball;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+.animate_ball {
+  
+}
+
+@-webkit-keyframes animate_ball {
+  0% {
+    top: 0px;
+  }
+  
+  100% {
+    top: -250px;
+  }
+}
+
 /* Portrait
 -------------------- */
 .app {

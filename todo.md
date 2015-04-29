@@ -41,3 +41,40 @@
 # Jour 6
 
 * Tag "release-final" -> Récupération à 00h00 par le prof
+
+
+
+# Features
+
+* iBacon & Killer feature
+	* NON INSTALLÉ
+* Social Sharing
+	* NON INSTALLÉ
+* Device Orientation
+	* NON INSTALLÉ
+* Globalisation
+	* NON INSTALLÉ
+
+----
+
+* Analytics
+	* NON FONCTIONNEL
+* Network-information
+	* NON FONCTIONNEL
+
+----
+
+* Stockage
+	* DONE
+* Photo
+	* DONE
+* Contact
+	* DONE
+* Géolocalisation
+	* DONE
+* Thème UI
+	* DONE
+* Accès remote (news)
+	* DONE
+* Status bar
+	* DONE

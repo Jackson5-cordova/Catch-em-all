@@ -17,6 +17,7 @@
 	</head>
 	<body>
 		<nav>
+<<<<<<< HEAD
             <a class="menu-toggle" href="#">Menu</a>
             <div style="position: absolute;right: 12px;top: 4px;">
                 <img src="img/logo2.png" width="50" alt="" />
@@ -30,6 +31,19 @@
                 <li><a href="compass.html">COMPASS</a></li>
             </ul>
         </nav>
+=======
+			<a class="menu-toggle" href="#">Menu</a>
+			<div style="position: absolute;right: 12px;top: 4px;">
+				<img src="img/logo2.png" width="50" alt="" />
+			</div>
+			<ul class="menu">
+				<li><a href="index.html" class="active">ACCUEIL</a></li>
+				<li><a href="contact.html">CONTACTS</a></li>
+				<li><a href="news.html">NEWS</a></li>
+				<li><a href="geoloc.html">GEOLOCALISATION</a></li>
+			</ul>
+		</nav>
+>>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 
 		<div class="app text-center">
 
@@ -37,7 +51,41 @@
 
 				<h1>Accueil</h1>
 
-                <h3>Bon retour sur Catch'em All !</h3>
+				<h3>Bon retour sur Catch'em All !</h3>
+
+				<p class="connection-state">Vous avez une connection Internet.</p>
+
+				<div class="sign_log_in text-center">
+
+					<p>
+						Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+					</p>
+
+					<h2>Inscription</h2>
+
+					<form class="signIn text-center" action="" method="post">
+						<div class="style_input">
+							<label for="name">Name</label>
+							<input type="text" name="name" />
+						</div>
+						<div class="style_input">
+							<label for="email">Email</label>
+							<input type="text" name="email" />
+						</div>
+						<div class="style_input">
+							<label for="phone_number">Phone number</label>
+							<input type="text" name="phone_number" />
+						</div>
+						<div class="style_input">
+							<label for="password">Password</label>
+							<input type="text" name="password" />
+						</div>
+						<div class="style_input">
+							<button type="submit">Submit</button>
+						</div>
+					</form>
+
+				</div>
 
                 <div class="take_picture">
                     <p>
@@ -56,71 +104,37 @@
 
                 </div>
 
-				<div class="sign_log_in text-center">
-
-					<p>
-						Vous n'avez jamais utilisé l'application sur ce téléphone, veuillez vous connecter ou vous inscrire
+				<div class="connected">
+					<p> 
+						<details>
+							<summary>Cliquez pour votre votre carte de dresseurs</summary>
+							<div class="carte">
+								<div class="carte_top">Carte de dresseur</div>
+								<ul class="carte_left">
+									<li class="carte_name">
+										<div class="carte_name_title">Name</div>
+										<div class="carte_name_name"></div> 
+									</li>
+									<li class="carte_pokedex">
+										<div class="carte_pokedex_title">Pokédex</div>
+										<div class="carte_pokedex_name"></div> 
+									</li>
+								</ul>
+								<div class="carte_right">
+									<img src="" width="126" alt="">
+								</div>
+								<div class="carte_bottom">
+									<p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
+								</div>
+							</div>
+						</details>
 					</p>
 
-                    <h2>Inscription</h2>
-
-                    <form class="signIn text-center" action="" method="post">
-                        <div class="style_input">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" />
-                        </div>
-                        <div class="style_input">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" />
-                        </div>
-                        <div class="style_input">
-                            <label for="phone_number">Phone number</label>
-                            <input type="text" name="phone_number" />
-                        </div>
-                        <div class="style_input">
-                            <label for="password">Password</label>
-                            <input type="text" name="password" />
-                        </div>
-                        <div class="style_input">
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
-
+					<p>
+						<a href="geoloc.html">Découvrez si un Pokémon se trouve près de vous !</a>
+					</p>
+					
 				</div>
-
-                <div class="connected">
-                    <p>Vous êtes bien connecté</p>
-
-                    <p> 
-                        <details>
-                            <summary>Cliquez pour votre votre carte de dresseurs</summary>
-                            <div class="carte">
-                                <div class="carte_top">Carte de dresseur</div>
-                                <ul class="carte_left">
-                                    <li class="carte_name">
-                                        <div class="carte_name_title">Name</div>
-                                        <div class="carte_name_name"></div> 
-                                    </li>
-                                    <li class="carte_pokedex">
-                                        <div class="carte_pokedex_title">Pokédex</div>
-                                        <div class="carte_pokedex_name"></div> 
-                                    </li>
-                                </ul>
-                                <div class="carte_right">
-                                    <img src="" width="126" alt="">
-                                </div>
-                                <div class="carte_bottom">
-                                    <p>Une petite phrase pour le fun pour prouver que je suis un petit dresseur plein de talent et de courage et voilà.</p>
-                                </div>
-                            </div>
-                        </details>
-                    </p>
-
-                    <p>
-                        Il n'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !
-                    </p>
-                    
-                </div>
 
 			</div>
 
@@ -132,10 +146,10 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                home();
-            });
-        </script>
+		<script>
+			$(document).ready(function() {
+				home();
+			});
+		</script>
 	</body>
 </html>
