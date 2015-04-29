@@ -31,27 +31,17 @@
 
 		<div class="app text-center">
 
-			<div class="div_storage div_main">
-				<h2>Storage</h2>
-
-				<div class="formulaire">
-	                <input type="text"></input>
-	                <button>Soumettre</button>
-	            </div>
-
-			</div>
+				<div class="take_picture div_main">
+					<br/>
+					<button onclick="capturePhoto();">Prendre une photo</button><br>
+					<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Choisir dans la bibliothèque</button><br>
+					<img id="image_taken" src="" style="display:none;width:100%;">
+				</div>
 
 		</div>                  
 
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
-
-		<script>
-            $(document).ready(function() {
-                storage();
-            });
-        </script>
-
 	</body>
 </html>
