@@ -132,6 +132,7 @@ function contacts(callback){
 		numeros = all_contacts;
 		callback();
 	};
+
 	function onError(contactError) {
 	    alert('onError!');
 	};
@@ -453,9 +454,11 @@ function onFailPhoto(message) {
 }
 
 function storage(){
+	// Ouverture de la BDD
 	var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 	db.transaction(function(tx){
 
+		// Création de la TABLE
 		tx.executeSql('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
 		tx.executeSql
 		("SELECT * FROM USERS", [], 
