@@ -27,3 +27,11 @@
 * iBeacon
 * Killer feature
 * Rapport
+
+----
+
+* Numériser les users stories
+* Numériser BM Canvas
+* Numériser A3 stories
+* Blocages
+* Interviews
