@@ -53,6 +53,8 @@ body {
     margin: 0 auto;
     border-radius: 10px;
     -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .ball {
