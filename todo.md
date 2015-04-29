@@ -38,4 +38,6 @@
 
 ----
 
-Tag "release-final"
+# Jour 6
+
+* Tag "release-final" -> Récupération à 00h00 par le prof
