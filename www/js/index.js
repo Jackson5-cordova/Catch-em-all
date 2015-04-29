@@ -387,11 +387,12 @@ function storage(){
 		);
 	});
 
-	$('.formulaire').submit(function(){
+	$('.formulaire > button').click(function(){
 		input = $( "input:first" ).val();
 		//alert(input);
 		db.transaction(function(tx){
-			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input]);
+			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input], function(t, data){document.location.reload(true);	});
 		});
+		
 	});
 }
