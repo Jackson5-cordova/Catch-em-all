@@ -412,7 +412,7 @@ function home(){
 
 }
 
-var table_name = 'rt';
+var table_name = 'ntm';
 
 var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 
@@ -521,7 +521,7 @@ function onPhotoDataSuccess(imageURI) {
 	cameraImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
-	alert(imageURI);
+	//alert(imageURI);
 }
 function onPhotoURISuccess(imageURI) {
 	//console.log(imageURI);
@@ -530,7 +530,7 @@ function onPhotoURISuccess(imageURI) {
 	galleryImage.src = imageURI;
 	var buttonSubmit = document.getElementById('image-submit');
 	buttonSubmit.style.display = 'block';
-	alert(imageURI);
+	//alert(imageURI);
 }
 function capturePhoto() {
 	navigator.camera.getPicture(onPhotoDataSuccess, onFailPhoto, { quality : 100,
