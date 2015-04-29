@@ -39,7 +39,6 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
-		check_con();
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
 	},
@@ -70,8 +69,27 @@ var connected = false;
 function menu(){
 	$('.menu-toggle').click(function(){
 		$('.menu').slideToggle();
+		return false;
 	});
 }
+
+function checkConnection() {
+	var networkState = navigator.connection.type;
+	var states = {};
+	states[navigator.connection.UNKNOWN]  = 'Connexion inconnue';
+	states[navigator.connection.ETHERNET] = 'Connexion ethernet';
+	states[navigator.connection.WIFI]     = 'Connexion WiFi';
+	states[navigator.connection.CELL_2G]  = 'Connexion 2G';
+	states[navigator.connection.CELL_3G]  = 'Connexion 3G';
+	states[navigator.connection.CELL_4G]  = 'Connexion 4G';
+	states[navigator.connection.CELL]     = 'Connexion générique';
+	states[navigator.connection.NONE]     = 'Pas de connexion';
+
+	alert(states[networkState]);
+}
+
+//checkConnection();
+
 
 var numeros;
 
@@ -294,17 +312,6 @@ function battle() {
 
 }
 
-function check_con(){
-	var check_connection = checkConnection();
-
-	if(check_connection) {
-		$('.div_home').append('Vous avez une connexion internet !');
-	} else {
-		$('.div_home').append('Vous n\'avez pas de connexion internet !');
-	}
-}
-
-
 function home(){
 	$('.connected, .take_picture, .sign_log_in').hide();
 	var contacts_done = 0;
@@ -388,18 +395,6 @@ function vertical_center(){
 			calc	= (parentH / 2) - (elH / 2);
 		$(this).css('margin-top',calc);
 	});
-}
-
-
-
-function checkConnection() {
-    var networkState = navigator.connection.type;
-    return true;
-    if(networkState == "Connection.NONE") {
-    	return false;
-    } else {
-    	return true;
-    }
 }
 
 

@@ -7,12 +7,6 @@
         "files": {
             "framework": {
                 "parents": {
-                    "SystemConfiguration.framework": [
-                        {
-                            "xml": true,
-                            "count": 1
-                        }
-                    ],
                     "ImageIO.framework": [
                         {
                             "xml": true,
@@ -54,16 +48,18 @@
                             "xml": true,
                             "count": 1
                         }
+                    ],
+                    "SystemConfiguration.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
                     ]
                 }
             },
             "config.xml": {
                 "parents": {
                     "/*": [
-                        {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"ios-package\" value=\"CDVConnection\" /></feature>",
-                            "count": 1
-                        },
                         {
                             "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
                             "count": 1
@@ -78,6 +74,10 @@
                         },
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"ios-package\" value=\"CDVConnection\" /></feature>",
                             "count": 1
                         },
                         {
@@ -108,9 +108,6 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.jackson5.catch_them_all"
-        },
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
@@ -118,6 +115,9 @@
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "com.jackson5.catch_them_all"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.statusbar": {
