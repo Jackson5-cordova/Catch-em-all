@@ -9,7 +9,6 @@ function simple_decrypt($text) {
     return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, '', base64_decode($text), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
 }
 
-//$pass = simple_decrypt('fIWuikBuNIlR5xD86T/RVwYYmqEP8+zCKwESFMUtq+I=');
 $pass = '';
 
 try {

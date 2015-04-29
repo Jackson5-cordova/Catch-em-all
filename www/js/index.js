@@ -72,38 +72,49 @@ function menu(){
 		$('.menu').slideToggle();
 	});
 }
+
 var numeros;
+
 function contact(){
-	$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
 
-	setTimeout(function() {
-		contacts(function() {
-			$.post(url_access+'functions.php',{data: numeros, what_function:'getContacts'},function(data) {
-				console.log(data);
+	$('.search_contacts').on('click', function() {
 
-				if(data != 'KO') {
-					$('.loading').remove();
-					var data = JSON.parse(data);
+		var thaat = $(this);
 
-					if(data.length != 0) {
-						$('.div_contact').append('<h3>Des contacts ont été trouvés !</h3>');
-						$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
-						for (var i = 0; i < data.length; i++) {
-							$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
-							// $('.div_contact').append('<p><button>Ajouter en ami</button></p>');
+		$('.div_contact').html('<h2>Contacts</h2>').append('<div class="loading">Chargement...</div>');
+
+		setTimeout(function() {
+			contacts(function() {
+				$.post(url_access+'functions.php',{data: numeros, what_function:'getContacts'},function(data) {
+					console.log(data);
+
+					if(data != 'KO') {
+						$('.loading').remove();
+						var data = JSON.parse(data);
+
+						if(data.length != 0) {
+							$('.div_contact').append('<h3>Des contacts ont été trouvés !</h3>');
+							$('.div_contact').append('Voici vos amis qui jouent à l\'application !<br /><br /><br />');
+							for (var i = 0; i < data.length; i++) {
+								$('.div_contact').append('<p>Name : '+data[i].name+' <br/>Phone number : '+data[i].phone_number+'</p>');
+								// $('.div_contact').append('<p><button>Ajouter en ami</button></p>');
+							}
+							thaat.remove();
+						} else {
+							$('.div_contact').append('<p>Aucun contact trouvé</p>');
 						}
+
 					} else {
-						$('.div_contact').append('<p>Aucun contact trouvé</p>');
+						alert('erreur');
 					}
-
-				} else {
-					alert('erreur');
-				}
+				});
 			});
-		});
 
-		
-	}, 2000);
+			
+		}, 2000);
+	});
+
+	
 }
 
 function contacts(callback){
@@ -124,14 +135,23 @@ function contacts(callback){
 	function onError(contactError) {
 	    alert('onError!');
 	};
-	var options      = new ContactFindOptions();
-	options.filter   = "";
-	options.multiple = true;
-	options.desiredFields = [navigator.contacts.fieldType.phoneNumbers];
-	var filter = ["displayName", "name"];
-	//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
+	
+	if($(window).width() < 1200) {
+		var options = new ContactFindOptions();
+		options.filter   = "";
+		options.multiple = true;
+		options.desiredFields = [navigator.contacts.fieldType.phoneNumbers];
+		var filter = ["displayName", "name"];
+		//var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.phoneNumbers];
 
-	navigator.contacts.find(filter, onSuccess, onError, options);
+		navigator.contacts.find(filter, onSuccess, onError, options);
+	} else {
+		var all_contacts = {};
+		all_contacts[0] = 'ooo';
+		numeros =  all_contacts;
+		callback();
+	}
+	
 }
 
 function news(){
@@ -156,60 +176,121 @@ function news(){
 	}
 }
 
+var pokemon_name = '';
+
 function geolocalisation(){
 	$('.div_battle').hide();
 	$('.div_geoloc').html('<h2>Geolocalisation</h2>').append('<div class="loading">Chargement...</div>');
-	var onSuccess = function(position) {
+
+	var successPosition = function(position) {
 		$('.loading').remove();
+		console.log(position.coords.latitude + position.timestamp);
 		$('.div_geoloc').append('<h3>Votre localisation a été trouvée !</h3>');
 		$('.div_geoloc').append('<p>Latitude : '+position.coords.latitude+'</p>');
 		$('.div_geoloc').append('<p>Longitude : '+position.coords.longitude+'</p><br /><br /><br />');
 		$('.div_geoloc').append('<a href="geoloc.html" class="button">Me géolocaliser une nouvelle fois</a>');
 
-		if(
-			position.coords.latitude > 30 
-			&& position.coords.latitude < 55
-			&& position.coords.longitude > 0 
-			&& position.coords.longitude < 20
-		) 
+		if(position.coords.latitude > 48.85) {
 
-		{
-			$('.div_geoloc').append('<p>Il y a un Pokémon dans votre zone !</p>');
-			$('.div_geoloc').append('<p><img class="repered" src="img/pokemons/pikachu.png" width="300" /></p>');
-			$('.div_geoloc').append('<p><button class="show_battle">Affronter le Pokémon</button></p>');
+			pokemon_name = 'pikachu';
+
+		} else if(position.coords.latitude < 48.85) {
+
+			pokemon_name = "carapuce";
+
 		} else {
 			$('.div_geoloc').append('<p>Il n\'y a pas de Pokémons autour de vous en ce moment mais restez aux aguets !</p>');
 		}
 
-	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
-	    //       'Longitude: '         + position.coords.longitude         + '\n' +
-	    //       'Altitude: '          + position.coords.altitude          + '\n' +
-	    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
-	    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-	    //       'Heading: '           + position.coords.heading           + '\n' +
-	    //       'Speed: '             + position.coords.speed             + '\n' +
-	    //       'Timestamp: '         + position.timestamp                + '\n');
+		if(pokemon_name != '') {
+			$('.div_geoloc').append('<p>Il y a un Pokémon dans votre zone !</p>');
+			$('.div_geoloc').append('<p><img class="repered" src="img/pokemons/'+pokemon_name+'.png" width="300" /></p>');
+			$('.div_geoloc').append('<p><button class="show_battle">Affronter le Pokémon</button></p>');
+		}
+		
 	};
-	function onError(error) {
-	    //alert('code: '    + error.code    + '\n' +
+
+	var erreurPosition = function(error) {
+
+	    var info = "Erreur lors de la géolocalisation : ";
+	    switch(error.code) {
+	    case error.TIMEOUT:
+	    	info += "Timeout !";
+	    break;
+	    case error.PERMISSION_DENIED:
+	    info += "Vous n’avez pas donné la permission";
+	    break;
+	    case error.POSITION_UNAVAILABLE:
+	    	info += "La position n’a pu être déterminée";
+	    break;
+	    case error.UNKNOWN_ERROR:
+	    	info += "Erreur inconnue";
+	    break;
+	    }
+
+	    alert(info);
 	}
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+	navigator.geolocation.getCurrentPosition(successPosition, erreurPosition, {maximumAge:0,enableHighAccuracy:true});
+
+
 
 	$(document).on('click', '.show_battle', function() {
 		$('.div_geoloc').hide();
 		$('.div_battle .pokemon').append('<img src="'+$('.repered').attr('src')+'" width="300"/>');
-		$('.div_battle').append('<p style="margin-top: 300px;"><button>Attraper le Pokémon</button></p>');
+		$('.div_battle').append('<p style="margin-top: 300px;"><button class="catch">Attraper le Pokémon</button></p>');
+		$('.div_battle .pokemon').append('<p>Chances d\'attraper le Pokémon : <span class="luck">20</span>/100</p>');
 		$('.div_battle').show();
 		
 		setTimeout(function() {
 			battle();
 		}, 1000);
 		
-	})
+	});
 }
 
+function rand(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+$(document).on('click', '.catch', function() {
+
+	if(battle_running === 0) {
+
+		$('.ball').addClass('animate_ball');
+
+		setTimeout(function() {
+			$('.ball').removeClass('animate_ball');
+			$('.pokemon').remove();
+			$('.catch').remove();
+			$('.div_battle').append('<p>Vous avez attrapé le pokémon !!!</p>');
+			$('.div_battle').append('<p><a href="geoloc.html" class="button">Essayer encore une fois</a></p>');
+		}, 2000);
+	}
+});
+
+var battle_running = 0;
+
 function battle() {
-	$('.div_battle .pokemon').append('<p>Pikachu attaque éclair !</p>');
+
+	battle_running = 1;
+
+	var random = rand(1,3);
+	var luck = $('.luck');
+
+	if(random === 1) {
+		$('.div_battle .pokemon').append('<p>Pikachu vous attaque ! Vous perdez 10 points de chance !</p>');
+		luck.text(parseInt(luck.text()) - 10);
+	} else if(random === 2) {
+		$('.div_battle .pokemon').append('<p>Le pokémon se calme ! Vous gagnez 10 points de chance ! </p>');
+		luck.text(parseInt(luck.text()) + 10);
+	} else if(random === 3) {
+		$('.div_battle .pokemon').append('<p>Le Pokémon vous adore !! Vous gagnez 20 points de chance !!</p>');
+		luck.text(parseInt(luck.text()) + 20);
+	}
+
+	battle_running = 0;
+
 }
 
 function check_con(){
