@@ -39,6 +39,11 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
+<<<<<<< HEAD
+		check_con();
+		startWatch();
+=======
+>>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
 	},
@@ -472,6 +477,39 @@ function vertical_center(){
 
 
 
+<<<<<<< HEAD
+function checkConnection() {
+    var networkState = navigator.connection.type;
+    return true;
+    if(networkState == "Connection.NONE") {
+    	return false;
+    } else {
+    	return true;
+    }
+}
+/* Compass
+-------------------- */
+var watchID = null;
+function startWatch() {
+
+        // Update compass every 3 seconds
+        var options = { frequency: 3000 };
+
+        watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+    }
+    function onSuccess(heading) {
+        
+       $('.compass').empty().append('De 0 à 360 degres : ' + heading.magneticHeading);
+    }
+
+    // onError: Failed to get the heading
+    //
+    function onError(compassError) {
+        alert('Compass error: ' + compassError.code);
+    }
+
+=======
+>>>>>>> ec0031828a1e04ecc18696aa99fc31620b89ac43
 /* Camera
 -------------------- */
 var pictureSource; // picture source

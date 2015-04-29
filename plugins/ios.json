@@ -16,7 +16,7 @@
                     "CoreLocation.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "CoreGraphics.framework": [
@@ -73,6 +73,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Compass\"><param name=\"ios-package\" value=\"CDVCompass\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
                         },
@@ -112,6 +116,9 @@
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.contacts": {
+            "PACKAGE_NAME": "com.jackson5.catch_them_all"
+        },
+        "org.apache.cordova.device-orientation": {
             "PACKAGE_NAME": "com.jackson5.catch_them_all"
         },
         "org.apache.cordova.geolocation": {
