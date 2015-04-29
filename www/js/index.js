@@ -39,7 +39,6 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
-		check_con();
 		startWatch();
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
@@ -490,7 +489,7 @@ var watchID = null;
 function startWatch() {
 
         // Update compass every 3 seconds
-        var options = { frequency: 3000 };
+        var options = { frequency: 1000 };
 
         watchID = navigator.compass.watchHeading(onSuccess, onError, options);
     }
@@ -502,7 +501,7 @@ function startWatch() {
     // onError: Failed to get the heading
     //
     function onError(compassError) {
-        alert('Compass error: ' + compassError.code);
+       // alert('Compass error: ' );
     }
 
 
