@@ -54,12 +54,16 @@
 	* NON INSTALLÉ
 * Globalisation
 	* NON INSTALLÉ
----
+
+----
+
 * Analytics
 	* NON FONCTIONNEL
 * Network-information
 	* NON FONCTIONNEL
----
+
+----
+
 * Stockage
 	* DONE
 * Photo
