@@ -35,3 +35,7 @@
 * Numériser A3 stories
 * Blocages
 * Interviews
+
+----
+
+Tag "release-final"
