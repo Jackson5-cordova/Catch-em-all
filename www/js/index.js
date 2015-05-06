@@ -520,34 +520,3 @@ function getPhoto(source) {
 function onFailPhoto(message) {
 	alert('Failed because: ' + message);
 }
-
-function storage(){
-	var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
-	db.transaction(function(tx){
-
-		tx.executeSql('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY, texte)');
-		tx.executeSql
-		("SELECT * FROM USERS", [], 
-		    function(tx, results) {
-		        if(results.rows) {
-		            for (var i = 0; i < results.rows.length; i++) {
-		            	if(i > 0){
-		                	$('.div_storage').append("<br/>User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
-		            	}else{
-		                	$('.div_storage').append("User numéro:" + results.rows.item(i).id + " - Nom: "+ results.rows.item(i).texte);
-		                }
-		            }
-		        }
-		    }
-		);
-	});
-
-	$('.formulaire > button').click(function(){
-		input = $( "input:first" ).val();
-		//alert(input);
-		db.transaction(function(tx){
-			tx.executeSql('INSERT INTO USERS (texte) VALUES (?)',[input], function(t, data){document.location.reload(true);	});
-		});
-	});
-		
-}
