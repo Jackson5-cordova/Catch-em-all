@@ -39,6 +39,7 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 		StatusBar.hide();
+		startWatch();
 		// window.analytics.startTrackerWithId('UA-62250325-1');
 		// window.analytics.trackView("Page d'accueil");
 	},
@@ -187,6 +188,7 @@ function news(){
 						$('.div_news').append('<p>'+data[the_data]+'</p>');
 					}
 					news_done = 1;
+					beacon();
 				} else {
 					$('.sign_log_in').show();
 				}
@@ -411,7 +413,7 @@ function home(){
 
 }
 
-var table_name = 'OK';
+var table_name = 'ntm';
 
 var db = openDatabase('local_database', '1.0', 'database', 2 * 1024 * 1024);
 
@@ -472,6 +474,38 @@ function vertical_center(){
 
 
 
+
+function checkConnection() {
+    var networkState = navigator.connection.type;
+    return true;
+    if(networkState == "Connection.NONE") {
+    	return false;
+    } else {
+    	return true;
+    }
+}
+/* Compass
+-------------------- */
+var watchID = null;
+function startWatch() {
+
+        // Update compass every 3 seconds
+        var options = { frequency: 1000 };
+
+        watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+    }
+    function onSuccess(heading) {
+        
+       $('.compass').empty().append('De 0 à 360 degres : ' + heading.magneticHeading);
+    }
+
+    // onError: Failed to get the heading
+    //
+    function onError(compassError) {
+       // alert('Compass error: ' );
+    }
+
+
 /* Camera
 -------------------- */
 var pictureSource; // picture source
@@ -519,4 +553,48 @@ function getPhoto(source) {
 }
 function onFailPhoto(message) {
 	alert('Failed because: ' + message);
+}
+// function beacon() {
+// 	var delegate = new cordova.plugins.locationManager.Delegate();
+
+// 	delegate.didDetermineStateForRegion = function(pluginResult) {
+
+// 		// logToDom('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult));
+
+// 		cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult));
+// 	};
+
+// 	delegate.didStartMonitoringForRegion = function(pluginResult) {
+
+// 		// logToDom('didStartMonitoringForRegion:' + JSON.stringify(pluginResult));
+// 	};
+
+// 	delegate.didRangeBeaconsInRegion = function(pluginResult) {
+// 		// logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+
+// 		var beaconsFound = pluginResult.beacons;
+
+// 		if ( beaconsFound && beaconsFound.length > 0 ) {
+// 			alert("Votre beacon est proche !");
+// 			// alert('true');
+// 		  	// $broadcast('beacon', true);
+// 		} else if (beaconsFound && beaconsFound.length <= 0) {
+// 		  	// $broadcast('beacon', false);
+// 		  	// alert('false');
+// 		  	alert("Votre beacon n'est pas reconnu.");
+// 		}
+		
+// 	};
+
+// 	var uuid = '17586a9d-1fd4-4b05-8a50-ac08b6fdc91c';
+// 	var id = 'iBKS';
+// 	var minor = 1;
+// 	var major = 1;
+// 	var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(id, uuid, major, minor);
+
+
+// 	cordova.plugins.locationManager.setDelegate(delegate);
+// 	cordova.plugins.locationManager.requestWhenInUseAuthorization();
+// 	cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion)
+// 		.fail(console.error).done();
 }
